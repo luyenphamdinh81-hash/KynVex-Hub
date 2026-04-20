@@ -12754,46 +12754,23 @@ task.spawn(function()
 		end);
 	end);
 end);
---// Fast Attack GUI (Mini + Draggable)
+-- UI Vuông - Fast Attack (Gọn)
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+local Frame = Instance.new("Frame", ScreenGui)
+local Button = Instance.new("TextButton", Frame)
 
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = game.CoreGui
-
-local Frame = Instance.new("Frame")
-Frame.Parent = ScreenGui
-Frame.Size = UDim2.new(0, 140, 0, 60)
-Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Frame.BorderSizePixel = 0
+Frame.Size = UDim2.new(0,100,0,100)
+Frame.Position = UDim2.new(0.4,0,0.4,0)
+Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
 Frame.Active = true
-Frame.Draggable = true -- kéo được
+Frame.Draggable = true
 
-local UICorner = Instance.new("UICorner", Frame)
-UICorner.CornerRadius = UDim.new(0, 8)
-
--- Title
-local Title = Instance.new("TextLabel")
-Title.Parent = Frame
-Title.Size = UDim2.new(1, 0, 0.4, 0)
-Title.BackgroundTransparency = 1
-Title.Text = "Fast Attack"
-Title.TextColor3 = Color3.fromRGB(255,255,255)
-Title.TextScaled = true
-
--- Button
-local Button = Instance.new("TextButton")
-Button.Parent = Frame
-Button.Size = UDim2.new(0.8, 0, 0.4, 0)
-Button.Position = UDim2.new(0.1, 0, 0.5, 0)
-Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Button.TextColor3 = Color3.fromRGB(255,255,255)
-Button.TextScaled = true
+Button.Size = UDim2.new(1,0,1,0)
+Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
 Button.Text = "OFF"
+Button.TextScaled = true
+Button.TextColor3 = Color3.new(1,1,1)
 
-local UICorner2 = Instance.new("UICorner", Button)
-UICorner2.CornerRadius = UDim.new(0, 6)
-
--- Toggle
 _G.FastAttack = false
 
 Button.MouseButton1Click:Connect(function()
@@ -12801,16 +12778,7 @@ Button.MouseButton1Click:Connect(function()
     
     if _G.FastAttack then
         Button.Text = "ON"
-        Button.BackgroundColor3 = Color3.fromRGB(0,170,0)
-    else
-        Button.Text = "OFF"
-        Button.BackgroundColor3 = Color3.fromRGB(40,40,40)
-    end
-end)
-spawn(function()
-    while task.wait() do
-        if _G.FastAttack then
-            _G.FastAttack = true
+        _G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -13028,6 +12996,13 @@ task.spawn(function()
         end
     end
 end)
-        end
+        -- ví dụ:
+        -- while _G.FastAttack do
+        --     task.wait()
+        --     print("Fast Attack chạy")
+        -- end
+
+    else
+        Button.Text = "OFF"
     end
 end)
