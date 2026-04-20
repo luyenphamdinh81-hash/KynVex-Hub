@@ -12754,12 +12754,37 @@ task.spawn(function()
 		end);
 	end);
 end);
-local FastAttack = true -- ON / OFF ở đây
+--// GUI ON/OFF draggable
 
-if FastAttack then
-    print("Fast Attack ON")
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
 
-    while true do
+local Frame = Instance.new("Frame")
+Frame.Parent = ScreenGui
+Frame.Size = UDim2.new(0, 120, 0, 60)
+Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.Active = true
+Frame.Draggable = true
+
+local TextButton = Instance.new("TextButton")
+TextButton.Parent = Frame
+TextButton.Size = UDim2.new(1, 0, 1, 0)
+TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+TextButton.Text = "OFF"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.TextSize = 18
+
+--// Toggle trạng thái
+local toggle = false
+
+TextButton.MouseButton1Click:Connect(function()
+    toggle = not toggle
+
+    if toggle then
+        TextButton.Text = "ON"
+
         _G.FastAttack = true
 
 if _G.FastAttack then
@@ -12978,8 +13003,12 @@ task.spawn(function()
         end
     end
 end)
-        task.wait()
+        print("Fast Attack ON")
+
+    else
+        TextButton.Text = "OFF"
+
+        -- ❌ TẮT CHỨC NĂNG Ở ĐÂY ❌
+        print("Fast Attack OFF")
     end
-else
-    print("Fast Attack OFF")
-end
+end)
