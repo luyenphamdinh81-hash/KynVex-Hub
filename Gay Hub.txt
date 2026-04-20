@@ -12754,33 +12754,12 @@ task.spawn(function()
 		end);
 	end);
 end);
---// Mini GUI 50x50 (Drag + ON/OFF)
+local FastAttack = true -- ON / OFF ở đây
 
-local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+if FastAttack then
+    print("Fast Attack ON")
 
-local Frame = Instance.new("Frame", ScreenGui)
-Frame.Size = UDim2.new(0, 50, 0, 50)
-Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(25,25,25)
-Frame.Active = true
-Frame.Draggable = true
-
-local Button = Instance.new("TextButton", Frame)
-Button.Size = UDim2.new(1, 0, 1, 0)
-Button.Text = "OFF"
-Button.TextScaled = true
-Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
-Button.TextColor3 = Color3.fromRGB(255,255,255)
-
---// Trạng thái
-local Toggle = false
-
-Button.MouseButton1Click:Connect(function()
-    Toggle = not Toggle
-    
-    if Toggle then
-        Button.Text = "ON"
-        
+    while true do
         _G.FastAttack = true
 
 if _G.FastAttack then
@@ -12999,12 +12978,8 @@ task.spawn(function()
         end
     end
 end)
-        
-        
-    else
-        Button.Text = "OFF"
-        
-        --// Nếu cần tắt fast attack thì xử lý ở đây
-        
+        task.wait()
     end
-end)
+else
+    print("Fast Attack OFF")
+end
