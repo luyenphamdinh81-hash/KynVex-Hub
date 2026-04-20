@@ -12754,60 +12754,34 @@ task.spawn(function()
 		end);
 	end);
 end);
---// Fast Attack GUI (Mini + Drag chuẩn)
+--// Mini GUI 50x50 (Drag + ON/OFF)
 
-local UIS = game:GetService("UserInputService")
-
--- GUI
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 
 local Frame = Instance.new("Frame", ScreenGui)
-Frame.Size = UDim2.new(0, 140, 0, 60)
+Frame.Size = UDim2.new(0, 50, 0, 50)
 Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Frame.BorderSizePixel = 0
+Frame.BackgroundColor3 = Color3.fromRGB(25,25,25)
 Frame.Active = true
+Frame.Draggable = true
 
-Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 8)
-
--- Title
-local Title = Instance.new("TextLabel", Frame)
-Title.Size = UDim2.new(1, 0, 0.4, 0)
-Title.BackgroundTransparency = 1
-Title.Text = "Fast Attack"
-Title.TextColor3 = Color3.fromRGB(255,255,255)
-Title.TextScaled = true
-
--- Button
 local Button = Instance.new("TextButton", Frame)
-Button.Size = UDim2.new(0.8, 0, 0.4, 0)
-Button.Position = UDim2.new(0.1, 0, 0.5, 0)
-Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Button.TextColor3 = Color3.fromRGB(255,255,255)
-Button.TextScaled = true
+Button.Size = UDim2.new(1, 0, 1, 0)
 Button.Text = "OFF"
+Button.TextScaled = true
+Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
+Button.TextColor3 = Color3.fromRGB(255,255,255)
 
-Instance.new("UICorner", Button).CornerRadius = UDim.new(0, 6)
-
--- Toggle
-_G.FastAttack = false
+--// Trạng thái
+local Toggle = false
 
 Button.MouseButton1Click:Connect(function()
-    _G.FastAttack = not _G.FastAttack
+    Toggle = not Toggle
     
-    Button.Text = _G.FastAttack and "ON" or "OFF"
-    Button.BackgroundColor3 = _G.FastAttack 
-        and Color3.fromRGB(0,170,0) 
-        or Color3.fromRGB(40,40,40)
-end)
-
--- ========================
--- 📌 DUY NHẤT 1 CHỖ DÁN CODE
--- ========================
-task.spawn(function()
-    while task.wait() do
-        if _G.FastAttack then
-            _G.FastAttack = true
+    if Toggle then
+        Button.Text = "ON"
+        
+        _G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -13025,47 +12999,12 @@ task.spawn(function()
         end
     end
 end)
-        end
-    end
-end)
-
--- ========================
--- DRAG CHUẨN (mượt mobile + PC)
--- ========================
-local dragging = false
-local dragInput, mousePos, framePos
-
-Frame.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1
-    or input.UserInputType == Enum.UserInputType.Touch then
         
-        dragging = true
-        mousePos = input.Position
-        framePos = Frame.Position
-
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
-
-Frame.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement
-    or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
-end)
-
-UIS.InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        local delta = input.Position - mousePos
-        Frame.Position = UDim2.new(
-            framePos.X.Scale,
-            framePos.X.Offset + delta.X,
-            framePos.Y.Scale,
-            framePos.Y.Offset + delta.Y
-        )
+        
+    else
+        Button.Text = "OFF"
+        
+        --// Nếu cần tắt fast attack thì xử lý ở đây
+        
     end
 end)
