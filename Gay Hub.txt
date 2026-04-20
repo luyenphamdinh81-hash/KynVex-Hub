@@ -12624,7 +12624,8 @@ local function kq(Y, d)
 	end;
 	return r;
 end;
-function _G.FastAttack = true
+function 
+_G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
