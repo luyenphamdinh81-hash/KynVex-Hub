@@ -12754,34 +12754,36 @@ task.spawn(function()
 		end);
 	end);
 end);
---// UI Vuông 50x50 - ON/OFF - Kéo thả
-local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+-- GUI vuông 50x50, drag, ON/OFF, dán code trực tiếp
 
-local Frame = Instance.new("Frame", ScreenGui)
-Frame.Size = UDim2.new(0, 50, 0, 50)
-Frame.Position = UDim2.new(0.5, -25, 0.5, -25)
-Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Frame.BorderSizePixel = 0
-Frame.Active = true
-Frame.Draggable = true
+local g=Instance.new("ScreenGui",game.CoreGui)
+local f=Instance.new("Frame",g)
+local b=Instance.new("TextButton",f)
 
-local Button = Instance.new("TextButton", Frame)
-Button.Size = UDim2.new(1, 0, 1, 0)
-Button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-Button.Text = "OFF"
-Button.TextScaled = true
-Button.TextColor3 = Color3.new(1,1,1)
-Button.BorderSizePixel = 0
+f.Size=UDim2.new(0,50,0,50)
+f.Position=UDim2.new(0.5,-25,0.5,-25)
+f.BackgroundColor3=Color3.fromRGB(30,30,30)
+f.Active=true
+f.Draggable=true
 
---// Toggle
-local enabled = false
+b.Size=UDim2.new(1,0,1,0)
+b.Text="OFF"
+b.TextScaled=true
+b.BackgroundColor3=Color3.fromRGB(50,50,50)
+b.TextColor3=Color3.new(1,1,1)
 
-Button.MouseButton1Click:Connect(function()
-    enabled = not enabled
-    Button.Text = enabled and "ON" or "OFF"
-    
-    if enabled then
-        _G.FastAttack = true
+local s=false
+
+b.MouseButton1Click:Connect(function()
+	s=not s
+	b.Text=s and "ON" or "OFF"
+	b.BackgroundColor3=s and Color3.fromRGB(0,170,0) or Color3.fromRGB(50,50,50)
+
+	if s then
+		task.spawn(function()
+			while s do
+				
+				_G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -12999,5 +13001,9 @@ task.spawn(function()
         end
     end
 end)
-    end
+				
+				task.wait()
+			end
+		end)
+	end
 end)
