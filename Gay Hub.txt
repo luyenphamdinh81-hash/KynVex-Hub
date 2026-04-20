@@ -12754,27 +12754,63 @@ task.spawn(function()
 		end);
 	end);
 end);
---// Attack Panel (simple)
+--// Fast Attack GUI (Mini + Draggable)
 
-local gui = Instance.new("ScreenGui", game.CoreGui)
-local frame = Instance.new("Frame", gui)
-frame.Size = UDim2.new(0,200,0,180)
-frame.Position = UDim2.new(0.1,0,0.2,0)
-frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
 
---// Hàm tạo nút
-local function Btn(name, y)
-    local b = Instance.new("TextButton", frame)
-    b.Size = UDim2.new(1,-10,0,30)
-    b.Position = UDim2.new(0,5,0,y)
-    b.Text = name..": OFF"
+local Frame = Instance.new("Frame")
+Frame.Parent = ScreenGui
+Frame.Size = UDim2.new(0, 140, 0, 60)
+Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Draggable = true -- kéo được
+
+local UICorner = Instance.new("UICorner", Frame)
+UICorner.CornerRadius = UDim.new(0, 8)
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Parent = Frame
+Title.Size = UDim2.new(1, 0, 0.4, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "Fast Attack"
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+Title.TextScaled = true
+
+-- Button
+local Button = Instance.new("TextButton")
+Button.Parent = Frame
+Button.Size = UDim2.new(0.8, 0, 0.4, 0)
+Button.Position = UDim2.new(0.1, 0, 0.5, 0)
+Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Button.TextColor3 = Color3.fromRGB(255,255,255)
+Button.TextScaled = true
+Button.Text = "OFF"
+
+local UICorner2 = Instance.new("UICorner", Button)
+UICorner2.CornerRadius = UDim.new(0, 6)
+
+-- Toggle
+_G.FastAttack = false
+
+Button.MouseButton1Click:Connect(function()
+    _G.FastAttack = not _G.FastAttack
     
-    local on = false
-    b.MouseButton1Click:Connect(function()
-        on = not on
-        b.Text = name..": "..(on and "ON" or "OFF")
-
-        _G.FastAttack = true
+    if _G.FastAttack then
+        Button.Text = "ON"
+        Button.BackgroundColor3 = Color3.fromRGB(0,170,0)
+    else
+        Button.Text = "OFF"
+        Button.BackgroundColor3 = Color3.fromRGB(40,40,40)
+    end
+end)
+spawn(function()
+    while task.wait() do
+        if _G.FastAttack then
+            _G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -12992,17 +13028,6 @@ task.spawn(function()
         end
     end
 end)
-        if on then
-            -- code chạy khi bật
-        else
-            -- code dừng khi tắt
         end
-
-    end)
-end
-
---// Danh sách nút
-Btn("Fast Attack", 10)
-Btn("Auto Click", 50)
-Btn("Kill Aura", 90)
-Btn("Hitbox", 130)
+    end
+end)
