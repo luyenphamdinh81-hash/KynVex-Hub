@@ -12754,13 +12754,27 @@ task.spawn(function()
 		end);
 	end);
 end);
--- Tạo bảng chứa các chức năng
-local Functions = {}
+--// Attack Panel (simple)
 
--- ⚔️ Fast Attack
-function Functions.FastAttack()
-    print("Fast Attack Enabled")
-    _G.FastAttack = true
+local gui = Instance.new("ScreenGui", game.CoreGui)
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0,200,0,180)
+frame.Position = UDim2.new(0.1,0,0.2,0)
+frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+
+--// Hàm tạo nút
+local function Btn(name, y)
+    local b = Instance.new("TextButton", frame)
+    b.Size = UDim2.new(1,-10,0,30)
+    b.Position = UDim2.new(0,5,0,y)
+    b.Text = name..": OFF"
+    
+    local on = false
+    b.MouseButton1Click:Connect(function()
+        on = not on
+        b.Text = name..": "..(on and "ON" or "OFF")
+
+        _G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -12978,4 +12992,17 @@ task.spawn(function()
         end
     end
 end)
+        if on then
+            -- code chạy khi bật
+        else
+            -- code dừng khi tắt
+        end
+
+    end)
 end
+
+--// Danh sách nút
+Btn("Fast Attack", 10)
+Btn("Auto Click", 50)
+Btn("Kill Aura", 90)
+Btn("Hitbox", 130)
