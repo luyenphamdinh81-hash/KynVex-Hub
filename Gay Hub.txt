@@ -12754,14 +12754,13 @@ task.spawn(function()
 		end);
 	end);
 end);
-IF.CreateToggle({
-	Title = "Auto Attack",
-	Description = "",
-	Default = false,
-	Callback = function(Y)
-		_G.Auto attack_S = Y;
-	end,
-	_G.FastAttack = true
+-- Tạo bảng chứa các chức năng
+local Functions = {}
+
+-- ⚔️ Fast Attack
+function Functions.FastAttack()
+    print("Fast Attack Enabled")
+    _G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -12979,3 +12978,4 @@ task.spawn(function()
         end
     end
 end)
+end
