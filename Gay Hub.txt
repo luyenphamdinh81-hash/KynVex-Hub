@@ -12754,38 +12754,23 @@ task.spawn(function()
 		end);
 	end);
 end);
---// GUI ON/OFF draggable
+local Tabs = {
+    Main = Window:CreateTab("Main Farm"), -- Tên Tab chính của bạn
+}
 
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = game.CoreGui
+local FastAttackEnabled = false -- Biến trạng thái để kiểm tra bật/tắt
 
-local Frame = Instance.new("Frame")
-Frame.Parent = ScreenGui
-Frame.Size = UDim2.new(0, 120, 0, 60)
-Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Frame.Active = true
-Frame.Draggable = true
-
-local TextButton = Instance.new("TextButton")
-TextButton.Parent = Frame
-TextButton.Size = UDim2.new(1, 0, 1, 0)
-TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-TextButton.Text = "OFF"
-TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.Font = Enum.Font.SourceSansBold
-TextButton.TextSize = 18
-
---// Toggle trạng thái
-local toggle = false
-
-TextButton.MouseButton1Click:Connect(function()
-    toggle = not toggle
-
-    if toggle then
-        TextButton.Text = "ON"
-
-        _G.FastAttack = true
+Tabs.Main:CreateToggle("FastAttackToggle", {
+    Title = "Fast Attack",
+    Default = false,
+    Callback = function(Value)
+        FastAttackEnabled = Value
+        
+        -- Vòng lặp xử lý Fast Attack khi được bật
+        task.spawn(function()
+            while FastAttackEnabled do
+                -- ==========================================
+                _G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -13003,12 +12988,13 @@ task.spawn(function()
         end
     end
 end)
-        print("Fast Attack ON")
-
-    else
-        TextButton.Text = "OFF"
-
-        -- ❌ TẮT CHỨC NĂNG Ở ĐÂY ❌
-        print("Fast Attack OFF")
+                
+                -- Ví dụ: game:GetService("ReplicatedStorage").RigEvent:FireServer("attack")
+                
+                -- ==========================================
+                
+                task.wait() -- Đợi một khoảng thời gian rất ngắn (có thể chỉnh để nhanh hơn)
+            end
+        end)
     end
-end)
+})
