@@ -12754,30 +12754,33 @@ task.spawn(function()
 		end);
 	end);
 end);
--- UI Vuông - Fast Attack (Gọn)
+--// UI Vuông 50x50 - ON/OFF - Kéo thả
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
-local Frame = Instance.new("Frame", ScreenGui)
-local Button = Instance.new("TextButton", Frame)
 
-Frame.Size = UDim2.new(0,100,0,100)
-Frame.Position = UDim2.new(0.4,0,0.4,0)
-Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 50, 0, 50)
+Frame.Position = UDim2.new(0.5, -25, 0.5, -25)
+Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Frame.BorderSizePixel = 0
 Frame.Active = true
 Frame.Draggable = true
 
-Button.Size = UDim2.new(1,0,1,0)
-Button.BackgroundColor3 = Color3.fromRGB(50,50,50)
+local Button = Instance.new("TextButton", Frame)
+Button.Size = UDim2.new(1, 0, 1, 0)
+Button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 Button.Text = "OFF"
 Button.TextScaled = true
 Button.TextColor3 = Color3.new(1,1,1)
+Button.BorderSizePixel = 0
 
-_G.FastAttack = false
+--// Toggle
+local enabled = false
 
 Button.MouseButton1Click:Connect(function()
-    _G.FastAttack = not _G.FastAttack
+    enabled = not enabled
+    Button.Text = enabled and "ON" or "OFF"
     
-    if _G.FastAttack then
-        Button.Text = "ON"
+    if enabled then
         _G.FastAttack = true
 
 if _G.FastAttack then
@@ -12996,13 +12999,5 @@ task.spawn(function()
         end
     end
 end)
-        -- ví dụ:
-        -- while _G.FastAttack do
-        --     task.wait()
-        --     print("Fast Attack chạy")
-        -- end
-
-    else
-        Button.Text = "OFF"
     end
 end)
