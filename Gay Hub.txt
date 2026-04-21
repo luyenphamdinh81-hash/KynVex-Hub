@@ -1,55 +1,11 @@
-local Y = game.Players;
-local d = Y.LocalPlayer;
-local R = d.Character.HumanoidRootPart;
-local Q = game:GetService("ReplicatedStorage");
-local r = d.Data.Level.Value;
-local a = game:GetService("TeleportService");
-local w = game:GetService("TweenService");
-local F = game:GetService("Lighting");
-local M = workspace.Enemies;
-local K = game:GetService("VirtualInputManager");
-local n = game:GetService("VirtualUser");
-local I = d.Team;
-local W = game:GetService("RunService");
-local N = game:GetService("Stats");
-local D = d.Character.Energy.Value;
-local A = game:GetService("Players");
-local u = A.LocalPlayer:WaitForChild("PlayerGui");
-local g = A.LocalPlayer;
-local z = g:WaitForChild("Backpack");
-local i = g.Character or g.CharacterAdded:Wait();
-local U = {};
-local C = {};
-local v = {};
-local m = {};
-local y = false;
-local b = false;
-local c = true;
-local H = false;
-local S = false;
-local o = false;
-local Z = false;
-local T = .1;
-local L = 0;
-local P = 25;
-repeat
-	local Y = (d.PlayerGui:WaitForChild("Main")):WaitForChild("Loading") and game:IsLoaded();
-	wait();
-until Y;
-if game.PlaceId == 2753915549 or game.PlaceId == 85211729168715 then
-	World1 = true;
-elseif game.PlaceId == 4442272183 or game.PlaceId == 79091703265657 then
-	World2 = true;
-elseif game.PlaceId == 7449423635 or game.PlaceId == 100117331123089 then
-	World3 = true;
-end;
-Marines = function()
-		Q.Remotes.CommF_:InvokeServer("SetTeam", "Marines");
-	end;
-Pirates = function()
-		Q.Remotes.CommF_:InvokeServer("SetTeam", "Pirates");
-	end;
-if World1 then
+local _v1 = game:HttpGet("https://raw.githubusercontent.com/Myvkhuy/One-Ui/refs/heads/Bearlib/raw.txt")
+local _v2 = loadstring(_v1)()
+local _v3 = _v2:CreateWindow({
+    Image = "rbxassetid://76571437829227",
+    Subtitle = "| T\xe1\xbb\x95ng H\xe1\xbb\xa3p",
+    Title = "KynVex hub Premium "
+})
+
 	U = {
 			"The Gorilla King",
 			"Bobby",
