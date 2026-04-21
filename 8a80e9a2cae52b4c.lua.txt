@@ -1,4 +1,4 @@
-- crack by NguyenKhang KynVex 
+- crack by HoangQuan nhatan 
 
 hookfunction(require(game:GetService('ReplicatedStorage').Effect.Container.Death), function() end)
 hookfunction(require(game:GetService('ReplicatedStorage').Effect.Container.Respawn), function() end)
@@ -4857,7 +4857,7 @@ function CheckItemBPCRBPCR(p611)
 end
 
 local u616 = loadstring(game:HttpGet('https://raw.githubusercontent.com/AnhDangNhoEm/UiRedz/refs/heads/main/RedzUiV.txt'))():MakeWindow({
-    Title = 'KynVex Hub : Blox Fruits',
+    Title = 'redz Hub : Blox Fruits',
     SubTitle = 'by real_redz',
     SaveFolder = 'Redz | redz lib v5.lua',
 })
@@ -4870,7 +4870,7 @@ local _ImageButton = Instance.new('ImageButton')
 
 _ImageButton.Size = UDim2.new(0, 50, 0, 50)
 _ImageButton.Position = UDim2.new(0.15, 0, 0.15, 0)
-_ImageButton.Image = 'rbxassetid:// 73372685000295'
+_ImageButton.Image = 'rbxassetid:// 79169432288417'
 _ImageButton.BackgroundTransparency = 1
 _ImageButton.Parent = _ScreenGui
 
@@ -4964,7 +4964,7 @@ local v637 = u616.MakeTab(v636, {
 local v638 = u616
 local v639 = u616.MakeTab(v638, {
     'Auto Fishing',
-    'rbxassetid://127664059821666',
+    'rbxassetid://79169432288417',
 })
 local v640 = u616
 local v641 = u616.MakeTab(v640, {
@@ -5020,25 +5020,25 @@ local v659 = u616.MakeTab(v658, {
 v635:AddDiscordInvite({
     Name = 'Tham Gia Discord',
     Description = 'Link Sever Discord',
-    Logo = 'rbxassetid://73372685000295',
+    Logo = 'rbxassetid://79169432288417',
     Invite = 'https://discord.com/invite/6Zv652ntHK',
 })
 v635:AddDiscordInvite({
     Name = 'REDZ HUB',
     Description = 'Facebook Group',
-    Logo = 'rbxassetid:// 73372685000295',
+    Logo = 'rbxassetid:// 79169432288417',
     Invite = 'https://www.facebook.com/groups/3405219299690000/?ref=share&mibextid=NSMWBT',
 })
 v635:AddDiscordInvite({
     Name = 'REDZ HUB',
     Description = 'YouTube Chanel',
-    Logo = 'rbxassetid:// 73372685000295',
+    Logo = 'rbxassetid:// 79169432288417',
     Invite = 'https://youtube.com/@chirobloxne?si=neWfXTwzJCVr3VGu',
 })
 v635:AddDiscordInvite({
     Name = 'REDZ HUB',
     Description = 'Discod Group',
-    Logo = 'rbxassetid:// 73372685000295',
+    Logo = 'rbxassetid:// 79169432288417',
     Invite = 'https://discord.com/invite/6Zv652ntHK',
 })
 v637:AddSection({
@@ -8737,7 +8737,7 @@ if World3 then
                                 game.StarterGui:SetCore('SendNotification', {
                                     Title = 'Tu\u{1ea5}n Anh IOS',
                                     Text = 'Use! - Yama or Tushita',
-                                    con = 'rbxassetid://110657725541747',
+                                    con = 'rbxassetid://79169432288417',
                                     Duration = 10,
                                 })
 
