@@ -12754,36 +12754,14 @@ task.spawn(function()
 		end);
 	end);
 end);
---// GUI ON OFF DRAGGABLE 50x50
-
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = game.CoreGui
-
-local Frame = Instance.new("Frame")
-Frame.Parent = ScreenGui
-Frame.Size = UDim2.new(0, 50, 0, 50)
-Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Frame.Active = true
-Frame.Draggable = true
-
-local Button = Instance.new("TextButton")
-Button.Parent = Frame
-Button.Size = UDim2.new(1, 0, 1, 0)
-Button.Text = "OFF"
-Button.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-
---// CHỖ DÁN CODE FAST ATTACK
-local Enabled = false
-
-Button.MouseButton1Click:Connect(function()
-    Enabled = not Enabled
-    if Enabled then
-        Button.Text = "ON"
-        Button.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
-
-        _G.FastAttack = true
+Title = "Auto Attack",
+	Description = "auto click",
+	Default = false,
+	Callback = function(Y)
+		_G.AutoAttack = Y;
+	end,
+});
+_G.FastAttack = true
 
 if _G.FastAttack then
     local _ENV = (getgenv or getrenv or getfenv)()
@@ -12999,14 +12977,5 @@ task.spawn(function()
                     parts)
             end)
         end
-    end
-end)
-        _G.FastAttack = true
-
-    else
-        Button.Text = "OFF"
-        Button.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-
-        _G.FastAttack = false
     end
 end)
