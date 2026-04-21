@@ -12754,13 +12754,11 @@ task.spawn(function()
 		end);
 	end);
 end);
-Title = "Auto Attack",
-	Description = "auto click",
-	Default = false,
-	Callback = function(Y)
-		_G.AutoAttack = Y;
-	end,
-});
+--// ===== ATTACK (SETTINGS TAB) =====
+
+-- CHỖ GẮN CODE ATTACK 👇👇👇
+local AttackCode = [[
+
 _G.FastAttack = true
 
 if _G.FastAttack then
@@ -12978,4 +12976,49 @@ task.spawn(function()
             end)
         end
     end
+end)
+
+]]
+
+--==============================
+
+-- FRAME TRONG TAB SETTINGS
+local AttackFrame = Instance.new("Frame")
+AttackFrame.Parent = SettingsTab
+AttackFrame.Size = UDim2.new(1, -10, 0, 80)
+AttackFrame.Position = UDim2.new(0, 5, 0, 10)
+AttackFrame.BackgroundTransparency = 1
+
+-- TITLE
+local Label = Instance.new("TextLabel")
+Label.Parent = AttackFrame
+Label.Size = UDim2.new(1, 0, 0, 20)
+Label.Text = "Attack"
+Label.TextColor3 = Color3.new(1,1,1)
+Label.BackgroundTransparency = 1
+Label.TextXAlignment = Enum.TextXAlignment.Left
+
+-- TEXTBOX (CHỖ DÁN CODE)
+local Box = Instance.new("TextBox")
+Box.Parent = AttackFrame
+Box.Size = UDim2.new(1, 0, 0, 40)
+Box.Position = UDim2.new(0, 0, 0, 30)
+Box.PlaceholderText = "Dán attack code vào đây..."
+Box.Text = AttackCode
+Box.BackgroundColor3 = Color3.fromRGB(50,50,50)
+Box.TextColor3 = Color3.new(1,1,1)
+Box.ClearTextOnFocus = false
+
+-- LƯU CODE VÀ CHẠY LUÔN
+Box.FocusLost:Connect(function()
+	AttackCode = Box.Text
+	
+	if AttackCode ~= "" then
+		local func = loadstring(AttackCode)
+		if func then
+			pcall(func)
+		else
+			warn("Code attack lỗi")
+		end
+	end
 end)
