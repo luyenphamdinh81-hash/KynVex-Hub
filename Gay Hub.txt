@@ -12754,3 +12754,4 @@ task.spawn(function()
 		end);
 	end);
 end);
+loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/Nguyenkhang-hub/refs/heads/main/Fast%20attack"))()
