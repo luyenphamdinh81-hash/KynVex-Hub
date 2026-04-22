@@ -12755,3 +12755,173 @@ task.spawn(function()
 	end);
 end);
 loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/Nguyenkhang-hub/refs/heads/main/Fast%20attack"))()
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "KynVexHub"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = PlayerGui
+
+local Colors = {
+    Background = Color3.fromRGB(35, 85, 125), 
+    Accent = Color3.fromRGB(25, 65, 100),
+    Text = Color3.fromRGB(255, 255, 255),  
+    Success = Color3.fromRGB(0, 255, 150),     
+    Error = Color3.fromRGB(255, 70, 70),      
+    CloseBtn = Color3.fromRGB(220, 20, 60)    
+}
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 320, 0, 190)
+MainFrame.Position = UDim2.new(1, 50, 1, 50) 
+MainFrame.BackgroundColor3 = Colors.Background
+MainFrame.BorderSizePixel = 0
+MainFrame.Parent = ScreenGui
+
+local MainStroke = Instance.new("UIStroke")
+MainStroke.Thickness = 1.5
+MainStroke.Color = Color3.fromRGB(50, 110, 160)
+MainStroke.Parent = MainFrame
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 15)
+UICorner.Parent = MainFrame
+
+MainFrame:TweenPosition(UDim2.new(0.5, -160, 0.5, -95), "Out", "Bounce", 0.8, true)
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, -50, 0, 45)
+Title.Position = UDim2.new(0, 15, 0, 5)
+Title.Text = "KYNVEX HUB" 
+Title.TextColor3 = Colors.Text
+Title.TextSize = 22 
+Title.Font = Enum.Font.GothamBold
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.BackgroundTransparency = 1
+Title.Parent = MainFrame
+
+local SubTitle = Instance.new("TextLabel")
+SubTitle.Size = UDim2.new(1, 0, 0, 20)
+SubTitle.Position = UDim2.new(0, 15, 0, 40)
+SubTitle.Text = "System Key Management"
+SubTitle.TextColor3 = Color3.fromRGB(200, 200, 200)
+SubTitle.TextSize = 10
+SubTitle.Font = Enum.Font.Gotham
+SubTitle.TextXAlignment = Enum.TextXAlignment.Left
+SubTitle.BackgroundTransparency = 1
+SubTitle.Parent = MainFrame
+
+local CloseBtn = Instance.new("TextButton")
+CloseBtn.Size = UDim2.new(0, 32, 0, 32)
+CloseBtn.Position = UDim2.new(1, -42, 0, 12)
+CloseBtn.BackgroundColor3 = Colors.CloseBtn
+CloseBtn.Text = "X"
+CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseBtn.TextSize = 14
+CloseBtn.Font = Enum.Font.GothamBold
+CloseBtn.Parent = MainFrame
+Instance.new("UICorner", CloseBtn).CornerRadius = UDim.new(0, 8)
+
+CloseBtn.MouseButton1Click:Connect(function()
+    MainFrame:TweenPosition(UDim2.new(1, 50, 1, 50), "In", "Back", 0.5, true)
+    task.wait(0.5)
+    ScreenGui:Destroy()
+end)
+
+local KeyInput = Instance.new("TextBox")
+KeyInput.Size = UDim2.new(0, 280, 0, 40)
+KeyInput.Position = UDim2.new(0.5, -140, 0, 75)
+KeyInput.BackgroundColor3 = Colors.Accent
+KeyInput.PlaceholderText = "Paste your key here..."
+KeyInput.PlaceholderColor3 = Color3.fromRGB(100, 150, 180)
+KeyInput.Text = ""
+KeyInput.TextColor3 = Colors.Text
+KeyInput.TextSize = 13
+KeyInput.Font = Enum.Font.Gotham
+KeyInput.Parent = MainFrame
+Instance.new("UICorner", KeyInput).CornerRadius = UDim.new(0, 8)
+
+local CheckBtn = Instance.new("TextButton")
+CheckBtn.Size = UDim2.new(0, 135, 0, 40)
+CheckBtn.Position = UDim2.new(0, 20, 0, 130)
+CheckBtn.BackgroundTransparency = 1 
+CheckBtn.Text = "CHECK KEY"
+CheckBtn.TextColor3 = Colors.Success
+CheckBtn.TextSize = 12
+CheckBtn.Font = Enum.Font.GothamBold
+CheckBtn.Parent = MainFrame
+
+local GetKeyBtn = Instance.new("TextButton")
+GetKeyBtn.Size = UDim2.new(0, 135, 0, 40)
+GetKeyBtn.Position = UDim2.new(1, -155, 0, 130)
+GetKeyBtn.BackgroundTransparency = 1 
+GetKeyBtn.Text = "GET KEY"
+GetKeyBtn.TextColor3 = Color3.fromRGB(0, 200, 255)
+GetKeyBtn.TextSize = 12
+GetKeyBtn.Font = Enum.Font.GothamBold
+GetKeyBtn.Parent = MainFrame
+
+local function ShowNotify(msg, color)
+    local Notif = Instance.new("Frame")
+    Notif.Size = UDim2.new(0, 220, 0, 45)
+    Notif.Position = UDim2.new(1, 50, 0.8, 0)
+    Notif.BackgroundColor3 = Color3.fromRGB(25, 45, 65)
+    Notif.Parent = ScreenGui
+    Instance.new("UICorner", Notif).CornerRadius = UDim.new(0, 10)
+    Instance.new("UIStroke", Notif).Color = color
+
+    local Lab = Instance.new("TextLabel")
+    Lab.Size = UDim2.new(1, -10, 1, 0)
+    Lab.Position = UDim2.new(0, 10, 0, 0)
+    Lab.BackgroundTransparency = 1
+    Lab.Text = msg
+    Lab.TextColor3 = Colors.Text
+    Lab.TextSize = 11
+    Lab.Font = Enum.Font.GothamMedium
+    Lab.TextXAlignment = Enum.TextXAlignment.Left
+    Lab.Parent = Notif
+
+    local Bar = Instance.new("Frame")
+    Bar.Size = UDim2.new(1, 0, 0, 3)
+    Bar.Position = UDim2.new(0, 0, 1, -3)
+    Bar.BackgroundColor3 = color
+    Bar.BorderSizePixel = 0
+    Bar.Parent = Notif
+    Instance.new("UICorner", Bar)
+
+    Notif:TweenPosition(UDim2.new(1, -240, 0.8, 0), "Out", "Quart", 0.5, true)
+    Bar:TweenSize(UDim2.new(0, 0, 0, 3), "Linear", "In", 3)
+
+    task.delay(3, function()
+        Notif:TweenPosition(UDim2.new(1, 50, 0.8, 0), "In", "Quart", 0.5, true)
+        task.wait(0.5)
+        Notif:Destroy()
+    end)
+end
+
+local CorrectKey = "TNFKF629YNDNIV107UK" -- key chính nè
+
+GetKeyBtn.MouseButton1Click:Connect(function()
+    if setclipboard then
+        setclipboard("https://direct-link.net/5260515/CVYBXYOKBg4X")
+        ShowNotify("Copied link to clipboard!", Color3.fromRGB(0, 200, 255))
+    else
+        ShowNotify("Executor doesn't support clipboard!", Colors.Error)
+    end
+end)
+
+CheckBtn.MouseButton1Click:Connect(function()
+    ShowNotify("Checking key...", Colors.Text)
+    task.wait(1.5)
+    if KeyInput.Text == CorrectKey then
+        ShowNotify("Key Correct! Access Granted.", Colors.Success)
+        task.wait(0.8)
+        MainFrame:TweenPosition(UDim2.new(0.5, -160, -1, 0), "In", "Back", 0.5, true)
+        task.wait(0.5)
+        ScreenGui:Destroy()
+    else
+        ShowNotify("Incorrect Key! Please try again.", Colors.Error)
+    end
+end)
