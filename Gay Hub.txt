@@ -1,11 +1,55 @@
-local _v1 = game:HttpGet("https://raw.githubusercontent.com/Myvkhuy/One-Ui/refs/heads/Bearlib/raw.txt")
-local _v2 = loadstring(_v1)()
-local _v3 = _v2:CreateWindow({
-    Image = "rbxassetid://76571437829227",
-    Subtitle = "| T\xe1\xbb\x95ng H\xe1\xbb\xa3p",
-    Title = "KynVex hub Premium "
-})
-
+local Y = game.Players;
+local d = Y.LocalPlayer;
+local R = d.Character.HumanoidRootPart;
+local Q = game:GetService("ReplicatedStorage");
+local r = d.Data.Level.Value;
+local a = game:GetService("TeleportService");
+local w = game:GetService("TweenService");
+local F = game:GetService("Lighting");
+local M = workspace.Enemies;
+local K = game:GetService("VirtualInputManager");
+local n = game:GetService("VirtualUser");
+local I = d.Team;
+local W = game:GetService("RunService");
+local N = game:GetService("Stats");
+local D = d.Character.Energy.Value;
+local A = game:GetService("Players");
+local u = A.LocalPlayer:WaitForChild("PlayerGui");
+local g = A.LocalPlayer;
+local z = g:WaitForChild("Backpack");
+local i = g.Character or g.CharacterAdded:Wait();
+local U = {};
+local C = {};
+local v = {};
+local m = {};
+local y = false;
+local b = false;
+local c = true;
+local H = false;
+local S = false;
+local o = false;
+local Z = false;
+local T = .1;
+local L = 0;
+local P = 25;
+repeat
+	local Y = (d.PlayerGui:WaitForChild("Main")):WaitForChild("Loading") and game:IsLoaded();
+	wait();
+until Y;
+if game.PlaceId == 2753915549 or game.PlaceId == 85211729168715 then
+	World1 = true;
+elseif game.PlaceId == 4442272183 or game.PlaceId == 79091703265657 then
+	World2 = true;
+elseif game.PlaceId == 7449423635 or game.PlaceId == 100117331123089 then
+	World3 = true;
+end;
+Marines = function()
+		Q.Remotes.CommF_:InvokeServer("SetTeam", "Marines");
+	end;
+Pirates = function()
+		Q.Remotes.CommF_:InvokeServer("SetTeam", "Pirates");
+	end;
+if World1 then
 	U = {
 			"The Gorilla King",
 			"Bobby",
@@ -1850,7 +1894,7 @@ local Uz = function(Y)
 		local A = tostring((nz.Getcolor(dz.UIColor["Title Text Color"]))[2]);
 		local u = tostring((nz.Getcolor(dz.UIColor["Title Text Color"]))[3]);
 		local g = D .. ("," .. (A .. ("," .. u)));
-		K.Text = "<font color=\"rgb(" .. (g .. (")\">Gay Hub</font> " .. dz.TitleNameNoti));
+		K.Text = "<font color=\"rgb(" .. (g .. (")\">KynVex Hub</font> " .. dz.TitleNameNoti));
 		K.Name = "TextLabelNoti";
 		K.Parent = w;
 		K.BackgroundColor3 = Color3.fromRGB(230, 230, 230);
@@ -1984,7 +2028,7 @@ function Kz.CreateMain(Y)
 	local U = tostring((nz.Getcolor(dz.UIColor["Title Text Color"]))[2]);
 	local C = tostring((nz.Getcolor(dz.UIColor["Title Text Color"]))[3]);
 	local v = i .. ("," .. (U .. ("," .. C)));
-	M.Text = "<font color=\"rgb(" .. (v .. ")\">Gay Hub </font> : Blox Fruits");
+	M.Text = "<font color=\"rgb(" .. (v .. ")\">KynVex Hub </font> : Blox Fruits");
 	z = Instance.new("ImageLabel");
 	z.Name = "MainContainer";
 	z.Parent = Q;
@@ -2047,7 +2091,7 @@ function Kz.CreateMain(Y)
 	local c = tostring((nz.Getcolor(dz.UIColor["Title Text Color"]))[2]);
 	local H = tostring((nz.Getcolor(dz.UIColor["Title Text Color"]))[3]);
 	local S = b .. ("," .. (c .. ("," .. H)));
-	M.Text = "<font color=\"rgb(" .. (S .. ")\">Gay Hub </font> : Blox Fruits");
+	M.Text = "<font color=\"rgb(" .. (S .. ")\">KynVex Hub </font> : Blox Fruits");
 	K.Name = "Background1";
 	K.Parent = g;
 	K.Position = UDim2.new(0, 5, 0, 0);
@@ -4154,24 +4198,24 @@ function Kz.CreateMain(Y)
 	return V;
 end;
 local Cz = Kz.CreateMain({ Desc = "" });
-local vz = Cz.T({ Page_Name = "Main Farm", Page_Title = "Main Farm" });
-local mz = Cz.T({ Page_Name = "Setting", Page_Title = "Setting" });
-local yz = Cz.T({ Page_Name = "auto buy melee", Page_Title = "auto buy melee" });
-local bz = Cz.T({ Page_Name = "Acquire resources", Page_Title = "Acquire resources" });
-local cz = Cz.T({ Page_Name = "Farm Abyssal Event", Page_Title = "Farm Abyssal Event" });
-local Hz = Cz.T({ Page_Name = "Ethereal Mirage + Transcendent Form", Page_Title = "Ethereal Mirage + Transcendent Form" });
-local Sz = Cz.T({ Page_Name = "Draconic Event", Page_Title = "Draconic Event" });
-local oz = Cz.T({ Page_Name = "Primeval Island", Page_Title = "Primeval Island" });
-local Zz = Cz.T({ Page_Name = "Assault", Page_Title = "Assault" });
-local Tz = Cz.T({ Page_Name = "Duel System", Page_Title = "Duel System" });
-local kz = Cz.T({ Page_Name = "Astral Island Passage", Page_Title = "Astral Island Passage" });
-local Lz = Cz.T({ Page_Name = "Demonic Fruits", Page_Title = "Demonic Fruits" });
-local Pz = Cz.T({ Page_Name = "Marketplace", Page_Title = "Marketplace" });
-local jz = Cz.T({ Page_Name = "Miscellaneous", Page_Title = "Miscellaneous" });
+local vz = Cz.T({ Page_Name = "Farm", Page_Title = "Farm" });
+local mz = Cz.T({ Page_Name = "Config", Page_Title = "Config" });
+local yz = Cz.T({ Page_Name = "Fighting Style", Page_Title = "Fighting Style" });
+local bz = Cz.T({ Page_Name = "Items Farm", Page_Title = "Items Farm" });
+local cz = Cz.T({ Page_Name = "Sea Events", Page_Title = "Sea Events" });
+local Hz = Cz.T({ Page_Name = "Mirage + RaceV4", Page_Title = "Mirage + RaceV4" });
+local Sz = Cz.T({ Page_Name = "Drago Dojo", Page_Title = "Drago Dojo" });
+local oz = Cz.T({ Page_Name = "Prehistoric", Page_Title = "Prehistoric" });
+local Zz = Cz.T({ Page_Name = "Raid", Page_Title = "Raid" });
+local Tz = Cz.T({ Page_Name = "Combat PVP", Page_Title = "Combat PVP" });
+local kz = Cz.T({ Page_Name = "Teleport", Page_Title = "Teleport" });
+local Lz = Cz.T({ Page_Name = "Fruits", Page_Title = "Fruits" });
+local Pz = Cz.T({ Page_Name = "Shop", Page_Title = "Shop" });
+local jz = Cz.T({ Page_Name = "Misc", Page_Title = "Misc" });
 local Gz = vz.CreateSection("Farm");
 Gz.CreateToggle({
 	Title = "Auto Farm Level",
-	Description = "auto lv1-2800",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Level = Y;
@@ -4594,7 +4638,7 @@ qz.CreateDropdown({
 });
 qz.CreateToggle({
 	Title = "Auto Materials",
-	Description = "farm item",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		(getgenv()).AutoMaterial = Y;
@@ -4641,7 +4685,7 @@ spawn(function()
 end);
 qz.CreateToggle({
 	Title = "Auto Farm Ectoplasm",
-	Description = " farm  in Cursed ship",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.AutoEctoplasm = Y;
@@ -4673,7 +4717,7 @@ spawn(function()
 end);
 qz.CreateToggle({
 	Title = "Auto Done Bartilo Quest",
-	Description = "done quest bartilo",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Bartilo_Quest = Y;
@@ -5017,7 +5061,7 @@ local nF = {
 	};
 Vz.CreateDropdown({
 	Title = "Select Fishing Rod",
-	Description = "auto fishing",
+	Description = "",
 	Values = KF,
 	Default = "Fishing Rod",
 	Callback = function(Y)
@@ -5078,7 +5122,7 @@ IF.CreateDropdown({
 });
 IF.CreateToggle({
 	Title = "Auto Mastery Fruits",
-	Description = "auto farm fruits",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.FarmMastery_Dev = Y;
@@ -5134,7 +5178,7 @@ spawn(function()
 end);
 IF.CreateToggle({
 	Title = "Auto Mastery Gun",
-	Description = "auto farm gun",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.FarmMastery_G = Y;
@@ -5227,7 +5271,7 @@ spawn(function()
 end);
 IF.CreateToggle({
 	Title = "Auto Mastery All Sword",
-	Description = "auto farm mas 600",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.FarmMastery_S = Y;
@@ -5324,7 +5368,7 @@ spawn(function()
 end);
 NF.CreateToggle({
 	Title = "Auto Cake Prince",
-	Description = "farm cake island",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Auto_Cake_Prince = Y;
@@ -5397,7 +5441,7 @@ spawn(function()
 end);
 NF.CreateToggle({
 	Title = "Auto Bones",
-	Description = "farm bone",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.AutoFarm_Bone = Y;
@@ -5451,7 +5495,7 @@ spawn(function()
 end);
 NF.CreateToggle({
 	Title = "Accept Quests",
-	Description = "done quest",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.AcceptQuestC = Y;
@@ -5581,7 +5625,7 @@ end);
 local uF = vz.CreateSection("Unlocked Dungeon");
 uF.CreateToggle({
 	Title = "Auto Unlock Dough Dungeon",
-	Description = "on raid dough",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Doughv2 = Y;
@@ -5647,7 +5691,7 @@ spawn(function()
 end);
 uF.CreateToggle({
 	Title = "Auto Unlock Phoenix Dungeon",
-	Description = "on raid phoenix",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.AutoPhoenixF = Y;
@@ -5799,7 +5843,7 @@ spawn(function()
 end);
 gF.CreateToggle({
 	Title = "Accept Rainbow Quest Faster",
-	Description = "farm haki rainbow",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.GetQFast = Y;
@@ -5808,7 +5852,7 @@ gF.CreateToggle({
 local zF = vz.CreateSection("Instinct / Observation");
 zF.CreateToggle({
 	Title = "Auto Farm Observation",
-	Description = "farm Examine",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.obsFarm = Y;
@@ -5888,7 +5932,7 @@ spawn(function()
 end);
 zF.CreateToggle({
 	Title = "Auto Observation V2",
-	Description = "unlock haki v2",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.AutoKenVTWO = Y;
@@ -5989,7 +6033,7 @@ end);
 local iF = vz.CreateSection("Upgrade Races V3");
 iF.CreateToggle({
 	Title = "Auto Upgrade Mink V3",
-	Description = "auto farm mink v3",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Auto_Mink = Y;
@@ -6034,7 +6078,7 @@ spawn(function()
 end);
 iF.CreateToggle({
 	Title = "Auto Upgrade Human V3",
-	Description = "auto farm human v3",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Auto_Human = Y;
@@ -6103,7 +6147,7 @@ spawn(function()
 end);
 iF.CreateToggle({
 	Title = "Auto Upgrade Skypiea V3",
-	Description = "auto farm sky v3",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Auto_Skypiea = Y;
@@ -6153,7 +6197,7 @@ spawn(function()
 end);
 iF.CreateToggle({
 	Title = "Auto Upgrade FishMan V3",
-	Description = "auto farm fish v3",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.Auto_Fish = Y;
@@ -6361,7 +6405,7 @@ spawn(function()
 end);
 CF.CreateToggle({
 	Title = "Auto Turn on Race V3",
-	Description = "on race v3",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.RaceClickAutov3 = Y;
@@ -6369,7 +6413,7 @@ CF.CreateToggle({
 });
 CF.CreateToggle({
 	Title = "Auto Turn on Race V4",
-	Description = "on race v4",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		_G.RaceClickAutov4 = Y;
@@ -6402,7 +6446,7 @@ spawn(function()
 end);
 CF.CreateToggle({
 	Title = "Auto Turn on Spin Position",
-	Description = "farm spin position",
+	Description = "",
 	Default = false,
 	Callback = function(Y)
 		RandomCFrame = Y;
@@ -12710,4 +12754,3 @@ task.spawn(function()
 		end);
 	end);
 end);
-loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/Nguyenkhang-hub/refs/heads/main/Fast%20attack"))()
