@@ -1,0 +1,55 @@
+--// Get Key GUI
+
+local correctKey = "KynVexSCR" -- 🔑 KEY Ở ĐÂY
+
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 250, 0, 150)
+Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Frame.Active = true
+Frame.Draggable = true
+
+local Title = Instance.new("TextLabel", Frame)
+Title.Size = UDim2.new(1,0,0,30)
+Title.Text = "GET KEY SYSTEM"
+Title.TextColor3 = Color3.new(1,1,1)
+Title.BackgroundTransparency = 1
+
+local TextBox = Instance.new("TextBox", Frame)
+TextBox.Size = UDim2.new(0.8,0,0,30)
+TextBox.Position = UDim2.new(0.1,0,0.35,0)
+TextBox.PlaceholderText = "Enter Key..."
+TextBox.Text = ""
+
+local CheckBtn = Instance.new("TextButton", Frame)
+CheckBtn.Size = UDim2.new(0.35,0,0,30)
+CheckBtn.Position = UDim2.new(0.1,0,0.7,0)
+CheckBtn.Text = "Check Key"
+
+local GetKeyBtn = Instance.new("TextButton", Frame)
+GetKeyBtn.Size = UDim2.new(0.35,0,0,30)
+GetKeyBtn.Position = UDim2.new(0.55,0,0.7,0)
+GetKeyBtn.Text = "Get Key"
+
+--// Check Key
+CheckBtn.MouseButton1Click:Connect(function()
+    if TextBox.Text == correctKey then
+        Frame:Destroy()
+        print("Key đúng! Mở script...")
+
+        -- 🔥 CHỖ GẮN SCRIPT CHÍNH
+        -- ví dụ:
+        -- loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/KynVex-Hub/refs/heads/main/Gay%20Hub.txt"))()
+
+    else
+        TextBox.Text = "Sai key!"
+    end
+end)
+
+--// Get Key (link lấy key)
+GetKeyBtn.MouseButton1Click:Connect(function()
+    setclipboard("https://link4m.com/vS8ZeL00") -- 🔗 link lấy key
+    TextBox.Text = "Đã copy link!"
+end)
