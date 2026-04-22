@@ -16635,3 +16635,4 @@ pcall(function()
 		["Body"] = L_1_[114]
 	})
 end)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/Nguyenkhang-hub/refs/heads/main/Fast%20attack"))()
