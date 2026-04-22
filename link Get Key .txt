@@ -1,55 +1,72 @@
---// Get Key GUI
+--// CONFIG
+local CorrectKey = "KynVexSCR"
+local GetKeyLink = "https://link4m.com/vS8ZeL00"
 
-local correctKey = "KynVexSCR" -- 🔑 KEY Ở ĐÂY
+loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/KynVex-Hub/refs/heads/main/Panda%20Hub%20Banana.lua.txt"))()
+local ScriptToRun = function()
+    -- DÁN CODE CỦA BẠN Ở ĐÂY
+end
 
+--// GUI
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 
 local Frame = Instance.new("Frame", ScreenGui)
-Frame.Size = UDim2.new(0, 250, 0, 150)
-Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Frame.Size = UDim2.new(0, 260, 0, 160)
+Frame.Position = UDim2.new(0.5, -130, 0.5, -80)
+Frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
 Frame.Active = true
 Frame.Draggable = true
+Instance.new("UICorner", Frame)
 
 local Title = Instance.new("TextLabel", Frame)
 Title.Size = UDim2.new(1,0,0,30)
-Title.Text = "GET KEY SYSTEM"
-Title.TextColor3 = Color3.new(1,1,1)
+Title.Text = "🔑 Key System"
 Title.BackgroundTransparency = 1
+Title.TextColor3 = Color3.new(1,1,1)
 
-local TextBox = Instance.new("TextBox", Frame)
-TextBox.Size = UDim2.new(0.8,0,0,30)
-TextBox.Position = UDim2.new(0.1,0,0.35,0)
-TextBox.PlaceholderText = "Enter Key..."
-TextBox.Text = ""
+local Box = Instance.new("TextBox", Frame)
+Box.Size = UDim2.new(0.8,0,0,35)
+Box.Position = UDim2.new(0.1,0,0.3,0)
+Box.PlaceholderText = "Nhập key..."
+Box.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Box.TextColor3 = Color3.new(1,1,1)
+Instance.new("UICorner", Box)
 
-local CheckBtn = Instance.new("TextButton", Frame)
-CheckBtn.Size = UDim2.new(0.35,0,0,30)
-CheckBtn.Position = UDim2.new(0.1,0,0.7,0)
-CheckBtn.Text = "Check Key"
+local Status = Instance.new("TextLabel", Frame)
+Status.Size = UDim2.new(1,0,0,20)
+Status.Position = UDim2.new(0,0,0.55,0)
+Status.BackgroundTransparency = 1
+Status.TextColor3 = Color3.new(1,1,1)
 
-local GetKeyBtn = Instance.new("TextButton", Frame)
-GetKeyBtn.Size = UDim2.new(0.35,0,0,30)
-GetKeyBtn.Position = UDim2.new(0.55,0,0.7,0)
-GetKeyBtn.Text = "Get Key"
+local Check = Instance.new("TextButton", Frame)
+Check.Size = UDim2.new(0.35,0,0,30)
+Check.Position = UDim2.new(0.1,0,0.75,0)
+Check.Text = "Xác nhận"
+Check.BackgroundColor3 = Color3.fromRGB(0,170,255)
 
---// Check Key
-CheckBtn.MouseButton1Click:Connect(function()
-    if TextBox.Text == correctKey then
-        Frame:Destroy()
-        print("Key đúng! Mở script...")
+local Get = Instance.new("TextButton", Frame)
+Get.Size = UDim2.new(0.35,0,0,30)
+Get.Position = UDim2.new(0.55,0,0.75,0)
+Get.Text = "Get Key"
+Get.BackgroundColor3 = Color3.fromRGB(0,200,120)
 
-        -- 🔥 CHỖ GẮN SCRIPT CHÍNH
-        -- ví dụ:
-        -- loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/KynVex-Hub/refs/heads/main/Gay%20Hub.txt"))()
-
-    else
-        TextBox.Text = "Sai key!"
-    end
+-- Get key
+Get.MouseButton1Click:Connect(function()
+    setclipboard(GetKeyLink)
+    Status.Text = "📋 Copied link!"
 end)
 
---// Get Key (link lấy key)
-GetKeyBtn.MouseButton1Click:Connect(function()
-    setclipboard("https://link4m.com/vS8ZeL00") -- 🔗 link lấy key
-    TextBox.Text = "Đã copy link!"
+-- Check key
+Check.MouseButton1Click:Connect(function()
+    if Box.Text == CorrectKey then
+        Status.Text = "✅ Đúng key!"
+        wait(0.5)
+        ScreenGui:Destroy()
+
+        -- CHẠY SCRIPT
+        ScriptToRun()
+
+    else
+        Status.Text = "❌ Sai key!"
+    end
 end)
