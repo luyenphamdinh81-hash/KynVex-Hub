@@ -1,173 +1,3 @@
-local TweenService = game:GetService("TweenService")
-local Players = game:GetService("Players")
-local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
-
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "KynVexHub"
-ScreenGui.ResetOnSpawn = false
-ScreenGui.Parent = PlayerGui
-
-local Colors = {
-    Background = Color3.fromRGB(35, 85, 125), 
-    Accent = Color3.fromRGB(25, 65, 100),
-    Text = Color3.fromRGB(255, 255, 255),  
-    Success = Color3.fromRGB(0, 255, 150),     
-    Error = Color3.fromRGB(255, 70, 70),      
-    CloseBtn = Color3.fromRGB(220, 20, 60)    
-}
-
-local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0, 320, 0, 190)
-MainFrame.Position = UDim2.new(1, 50, 1, 50) 
-MainFrame.BackgroundColor3 = Colors.Background
-MainFrame.BorderSizePixel = 0
-MainFrame.Parent = ScreenGui
-
-local MainStroke = Instance.new("UIStroke")
-MainStroke.Thickness = 1.5
-MainStroke.Color = Color3.fromRGB(50, 110, 160)
-MainStroke.Parent = MainFrame
-
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0, 15)
-UICorner.Parent = MainFrame
-
-MainFrame:TweenPosition(UDim2.new(0.5, -160, 0.5, -95), "Out", "Bounce", 0.8, true)
-
-local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1, -50, 0, 45)
-Title.Position = UDim2.new(0, 15, 0, 5)
-Title.Text = "KYNVEX HUB" 
-Title.TextColor3 = Colors.Text
-Title.TextSize = 22 
-Title.Font = Enum.Font.GothamBold
-Title.TextXAlignment = Enum.TextXAlignment.Left
-Title.BackgroundTransparency = 1
-Title.Parent = MainFrame
-
-local SubTitle = Instance.new("TextLabel")
-SubTitle.Size = UDim2.new(1, 0, 0, 20)
-SubTitle.Position = UDim2.new(0, 15, 0, 40)
-SubTitle.Text = "System Key Management"
-SubTitle.TextColor3 = Color3.fromRGB(200, 200, 200)
-SubTitle.TextSize = 10
-SubTitle.Font = Enum.Font.Gotham
-SubTitle.TextXAlignment = Enum.TextXAlignment.Left
-SubTitle.BackgroundTransparency = 1
-SubTitle.Parent = MainFrame
-
-local CloseBtn = Instance.new("TextButton")
-CloseBtn.Size = UDim2.new(0, 32, 0, 32)
-CloseBtn.Position = UDim2.new(1, -42, 0, 12)
-CloseBtn.BackgroundColor3 = Colors.CloseBtn
-CloseBtn.Text = "X"
-CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseBtn.TextSize = 14
-CloseBtn.Font = Enum.Font.GothamBold
-CloseBtn.Parent = MainFrame
-Instance.new("UICorner", CloseBtn).CornerRadius = UDim.new(0, 8)
-
-CloseBtn.MouseButton1Click:Connect(function()
-    MainFrame:TweenPosition(UDim2.new(1, 50, 1, 50), "In", "Back", 0.5, true)
-    task.wait(0.5)
-    ScreenGui:Destroy()
-end)
-
-local KeyInput = Instance.new("TextBox")
-KeyInput.Size = UDim2.new(0, 280, 0, 40)
-KeyInput.Position = UDim2.new(0.5, -140, 0, 75)
-KeyInput.BackgroundColor3 = Colors.Accent
-KeyInput.PlaceholderText = "Paste your key here..."
-KeyInput.PlaceholderColor3 = Color3.fromRGB(100, 150, 180)
-KeyInput.Text = ""
-KeyInput.TextColor3 = Colors.Text
-KeyInput.TextSize = 13
-KeyInput.Font = Enum.Font.Gotham
-KeyInput.Parent = MainFrame
-Instance.new("UICorner", KeyInput).CornerRadius = UDim.new(0, 8)
-
-local CheckBtn = Instance.new("TextButton")
-CheckBtn.Size = UDim2.new(0, 135, 0, 40)
-CheckBtn.Position = UDim2.new(0, 20, 0, 130)
-CheckBtn.BackgroundTransparency = 1 
-CheckBtn.Text = "CHECK KEY"
-CheckBtn.TextColor3 = Colors.Success
-CheckBtn.TextSize = 12
-CheckBtn.Font = Enum.Font.GothamBold
-CheckBtn.Parent = MainFrame
-
-local GetKeyBtn = Instance.new("TextButton")
-GetKeyBtn.Size = UDim2.new(0, 135, 0, 40)
-GetKeyBtn.Position = UDim2.new(1, -155, 0, 130)
-GetKeyBtn.BackgroundTransparency = 1 
-GetKeyBtn.Text = "GET KEY"
-GetKeyBtn.TextColor3 = Color3.fromRGB(0, 200, 255)
-GetKeyBtn.TextSize = 12
-GetKeyBtn.Font = Enum.Font.GothamBold
-GetKeyBtn.Parent = MainFrame
-
-local function ShowNotify(msg, color)
-    local Notif = Instance.new("Frame")
-    Notif.Size = UDim2.new(0, 220, 0, 45)
-    Notif.Position = UDim2.new(1, 50, 0.8, 0)
-    Notif.BackgroundColor3 = Color3.fromRGB(25, 45, 65)
-    Notif.Parent = ScreenGui
-    Instance.new("UICorner", Notif).CornerRadius = UDim.new(0, 10)
-    Instance.new("UIStroke", Notif).Color = color
-
-    local Lab = Instance.new("TextLabel")
-    Lab.Size = UDim2.new(1, -10, 1, 0)
-    Lab.Position = UDim2.new(0, 10, 0, 0)
-    Lab.BackgroundTransparency = 1
-    Lab.Text = msg
-    Lab.TextColor3 = Colors.Text
-    Lab.TextSize = 11
-    Lab.Font = Enum.Font.GothamMedium
-    Lab.TextXAlignment = Enum.TextXAlignment.Left
-    Lab.Parent = Notif
-
-    local Bar = Instance.new("Frame")
-    Bar.Size = UDim2.new(1, 0, 0, 3)
-    Bar.Position = UDim2.new(0, 0, 1, -3)
-    Bar.BackgroundColor3 = color
-    Bar.BorderSizePixel = 0
-    Bar.Parent = Notif
-    Instance.new("UICorner", Bar)
-
-    Notif:TweenPosition(UDim2.new(1, -240, 0.8, 0), "Out", "Quart", 0.5, true)
-    Bar:TweenSize(UDim2.new(0, 0, 0, 3), "Linear", "In", 3)
-
-    task.delay(3, function()
-        Notif:TweenPosition(UDim2.new(1, 50, 0.8, 0), "In", "Quart", 0.5, true)
-        task.wait(0.5)
-        Notif:Destroy()
-    end)
-end
-
-local CorrectKey = "odbanajmevuqkzivchanzhjbkav" -- key chính nè
-
-GetKeyBtn.MouseButton1Click:Connect(function()
-    if setclipboard then
-        setclipboard("https://link-center.net/5260515/q2as58yOZooV")
-        ShowNotify("Copied link to clipboard!", Color3.fromRGB(0, 200, 255))
-    else
-        ShowNotify("Executor doesn't support clipboard!", Colors.Error)
-    end
-end)
-
-CheckBtn.MouseButton1Click:Connect(function()
-    ShowNotify("Checking key...", Colors.Text)
-    task.wait(1.5)
-    if KeyInput.Text == CorrectKey then
-        ShowNotify("Key Correct! Access Granted.", Colors.Success)
-        task.wait(0.8)
-        MainFrame:TweenPosition(UDim2.new(0.5, -160, -1, 0), "In", "Back", 0.5, true)
-        task.wait(0.5)
-        ScreenGui:Destroy()
-    else
-        ShowNotify("Incorrect Key! Please try again.", Colors.Error)
-    end
-end)
 local Y = game.Players;
 local d = Y.LocalPlayer;
 local R = d.Character.HumanoidRootPart;
@@ -4370,11 +4200,11 @@ end;
 local Cz = Kz.CreateMain({ Desc = "" });
 local vz = Cz.T({ Page_Name = "trang trại", Page_Title = "trang trại" });
 local mz = Cz.T({ Page_Name = "cài đặt", Page_Title = "cài đặt" });
-local yz = Cz.T({ Page_Name = "buy melee", Page_Title = "buy melee" });
-local bz = Cz.T({ Page_Name = "Cày Đồ", Page_Title = "Cày Đồ" });
+local yz = Cz.T({ Page_Name = "vật phẩm cận chiến", Page_Title = "vật phẩm cận chiến" });
+local bz = Cz.T({ Page_Name = "Cày vật phẩm", Page_Title = "Cày vật phẩm" });
 local cz = Cz.T({ Page_Name = "Sự kiện biển", Page_Title = "Sự kiện biển" });
 local Hz = Cz.T({ Page_Name = "Ảo Ảnh + cấp tiến hóa", Page_Title = "Ảo Ảnh + cấp tiến hóa" });
-local Sz = Cz.T({ Page_Name = "rồng dojo", Page_Title = "rồng Dojo" });
+local Sz = Cz.T({ Page_Name = "Sự Kiện Rồng", Page_Title = "Sự Kiện Rồng" });
 local oz = Cz.T({ Page_Name = "Đảo tiền sử", Page_Title = "Đảo tiền sử" });
 local Zz = Cz.T({ Page_Name = "cuộc đột kích", Page_Title = "cuộc đột kích" });
 local Tz = Cz.T({ Page_Name = "Combat PVP", Page_Title = "Combat PVP" });
@@ -4384,7 +4214,7 @@ local Pz = Cz.T({ Page_Name = "cửa hàng", Page_Title = "cửa hàng" });
 local jz = Cz.T({ Page_Name = "Misc", Page_Title = "Misc" });
 local Gz = vz.CreateSection("Farm");
 Gz.CreateToggle({
-	Title = "Auto Farm Level",
+	Title = "cày cấp",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4496,7 +4326,7 @@ spawn(function()
 	end;
 end);
 Gz.CreateToggle({
-	Title = "Auto Travel Dressrosa",
+	Title = "Tự động đến Dressrosa",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4538,7 +4368,7 @@ spawn(function()
 	end;
 end);
 Gz.CreateToggle({
-	Title = "Auto Zou Quest",
+	Title = "làm nhiệm vụ Zou.",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4682,7 +4512,7 @@ spawn(function()
 end);
 local qz = vz.CreateSection("Miscellanea / Quest");
 qz.CreateToggle({
-	Title = "Auto Farm Nearest",
+	Title = "tự động đánh quái gần",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4708,7 +4538,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Factory Raid",
+	Title = "đánh nhà máy",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4734,7 +4564,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Pirate Raid",
+	Title = "đánh hải tặc",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4797,7 +4627,7 @@ spawn(function()
 	end;
 end);
 qz.CreateDropdown({
-	Title = "Choose Material",
+	Title = "cày nguyên liệu",
 	Description = "",
 	Values = v,
 	Default = nil,
@@ -4807,7 +4637,7 @@ qz.CreateDropdown({
 	end,
 });
 qz.CreateToggle({
-	Title = "Auto Materials",
+	Title = "tự động cày nguyên liệu",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4854,7 +4684,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Farm Ectoplasm",
+	Title = "cày vật chất kì dị",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4886,7 +4716,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Done Bartilo Quest",
+	Title = "hoàn thành nhiệm vụ bardilo",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -4965,7 +4795,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Done Citizen Quest",
+	Title = "hoàn thành citizen",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5020,7 +4850,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Training Dummy",
+	Title = "đánh training zummy",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5050,7 +4880,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Collect Berry",
+	Title = "tự động nhận berry",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5086,7 +4916,7 @@ spawn(function()
 	end;
 end);
 qz.CreateToggle({
-	Title = "Auto Collect Chest",
+	Title = "tự động nhặt rương",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5230,7 +5060,7 @@ local nF = {
 		"Carnivore Bait",
 	};
 Vz.CreateDropdown({
-	Title = "Select Fishing Rod",
+	Title = "cầm fish rod",
 	Description = "",
 	Values = KF,
 	Default = "Fishing Rod",
@@ -5239,7 +5069,7 @@ Vz.CreateDropdown({
 	end,
 });
 Vz.CreateDropdown({
-	Title = "Select Bait",
+	Title = "cầm mồi",
 	Description = "",
 	Values = nF,
 	Default = "Basic Bait",
@@ -5248,7 +5078,7 @@ Vz.CreateDropdown({
 	end,
 });
 Vz.CreateToggle({
-	Title = "Auto Fishing",
+	Title = "tự động câu cá",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5291,7 +5121,7 @@ IF.CreateDropdown({
 	end,
 });
 IF.CreateToggle({
-	Title = "Auto Mastery Fruits",
+	Title = "cày trái",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5347,7 +5177,7 @@ spawn(function()
 	end;
 end);
 IF.CreateToggle({
-	Title = "Auto Mastery Gun",
+	Title = "cày thông thạo súng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5440,7 +5270,7 @@ spawn(function()
 	end;
 end);
 IF.CreateToggle({
-	Title = "Auto Mastery All Sword",
+	Title = "cày tất cả kiếm",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5537,7 +5367,7 @@ spawn(function()
 	end;
 end);
 NF.CreateToggle({
-	Title = "Auto Cake Prince",
+	Title = "đánh katakuri",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5610,7 +5440,7 @@ spawn(function()
 	end;
 end);
 NF.CreateToggle({
-	Title = "Auto Bones",
+	Title = "cày xương",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5664,7 +5494,7 @@ spawn(function()
 	end;
 end);
 NF.CreateToggle({
-	Title = "Accept Quests",
+	Title = "tự động nhận nhiệm vụ",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5672,8 +5502,8 @@ NF.CreateToggle({
 	end,
 });
 NF.CreateToggle({
-	Title = "Auto Farm Mirror",
-	Description = "",
+	Title = "cày gương",
+	Description = "auto farm miror",
 	Default = false,
 	Callback = function(Y)
 		_G.AutoMiror = Y;
@@ -5697,7 +5527,7 @@ spawn(function()
 	end;
 end);
 NF.CreateToggle({
-	Title = "Auto Soul Reaper [Fully]",
+	Title = "tự động hallow tất cả",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5733,7 +5563,7 @@ spawn(function()
 	end;
 end);
 NF.CreateToggle({
-	Title = "Auto Random Bones",
+	Title = "tự động quay xương",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5754,7 +5584,7 @@ spawn(function()
 end);
 NF.CreateToggle({
 	Title = "Auto Try Luck Gravestone",
-	Description = "",
+	Description = "khong nho",
 	Default = false,
 	Callback = function(Y)
 		_G.TryLucky = Y;
@@ -5774,7 +5604,7 @@ spawn(function()
 end);
 NF.CreateToggle({
 	Title = "Auto Pray Gravestone",
-	Description = "",
+	Description = "khong nho",
 	Default = false,
 	Callback = function(Y)
 		_G.Praying = Y;
@@ -5794,7 +5624,7 @@ spawn(function()
 end);
 local uF = vz.CreateSection("Unlocked Dungeon");
 uF.CreateToggle({
-	Title = "Auto Unlock Dough Dungeon",
+	Title = "tự động mở bột",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5860,7 +5690,7 @@ spawn(function()
 	end;
 end);
 uF.CreateToggle({
-	Title = "Auto Unlock Phoenix Dungeon",
+	Title = "tự động mở phượng hoàng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5896,7 +5726,7 @@ spawn(function()
 end);
 local gF = vz.CreateSection("Buso/Aura Colours");
 gF.CreateToggle({
-	Title = "Auto Teleport Barista Cousin",
+	Title = "tự động Barista Cousin",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -5920,7 +5750,7 @@ gF.CreateButton({ Title = "Buy Buso Colors", Callback = function()
 		Q.Remotes.CommF_:InvokeServer("ColorsDealer", "2");
 	end });
 gF.CreateToggle({
-	Title = "Auto Rainbow Colors",
+	Title = "cày haki cầu vồng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6012,7 +5842,7 @@ spawn(function()
 	end);
 end);
 gF.CreateToggle({
-	Title = "Accept Rainbow Quest Faster",
+	Title = "nhận nhiệm vụ cầu vồng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6021,7 +5851,7 @@ gF.CreateToggle({
 });
 local zF = vz.CreateSection("Instinct / Observation");
 zF.CreateToggle({
-	Title = "Auto Farm Observation",
+	Title = "cày haki quan sát",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6101,7 +5931,7 @@ spawn(function()
 	end;
 end);
 zF.CreateToggle({
-	Title = "Auto Observation V2",
+	Title = "cày haki quan sát v2",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6202,7 +6032,7 @@ spawn(function()
 end);
 local iF = vz.CreateSection("Upgrade Races V3");
 iF.CreateToggle({
-	Title = "Auto Upgrade Mink V3",
+	Title = "cày thỏ V3",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6247,7 +6077,7 @@ spawn(function()
 	end;
 end);
 iF.CreateToggle({
-	Title = "Auto Upgrade Human V3",
+	Title = "cày Người v3",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6316,7 +6146,7 @@ spawn(function()
 	end;
 end);
 iF.CreateToggle({
-	Title = "Auto Upgrade Skypiea V3",
+	Title = "cày thiên thần v3",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6366,7 +6196,7 @@ spawn(function()
 	end;
 end);
 iF.CreateToggle({
-	Title = "Auto Upgrade FishMan V3",
+	Title = "cày cá v3",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6411,7 +6241,7 @@ end);
 local UF = vz.CreateSection("Dark Dragger + Valkyrie");
 UF.CreateToggle({
 	Title = "Auto Valkyrie",
-	Description = "",
+	Description = "khong nho",
 	Default = false,
 	Callback = function(Y)
 		_G.AutoRipInKynVex = Y;
@@ -6438,7 +6268,7 @@ spawn(function()
 end);
 UF.CreateToggle({
 	Title = "Auto Unlocked Puzzle",
-	Description = "",
+	Description = "khong nho",
 	Default = false,
 	Callback = function(Y)
 		_G.AutoUnHaki = Y;
@@ -6485,7 +6315,7 @@ end);
 local CF = mz.CreateSection("Settings / Configure");
 CF.CreateDropdown({
 	Title = "Select Weapon",
-	Description = "",
+	Description = "chọn cần cày",
 	Values = {
 		"Melee",
 		"Sword",
@@ -6546,7 +6376,7 @@ CF.CreateToggle({
 	end,
 });
 CF.CreateToggle({
-	Title = "Bring Mobs",
+	Title = "Gôm quái",
 	Description = "",
 	Default = true,
 	Callback = function(Y)
@@ -6555,7 +6385,7 @@ CF.CreateToggle({
 });
 CF.CreateToggle({
 	Title = "Auto Turn on Buso",
-	Description = "",
+	Description = "khong nho",
 	Default = true,
 	Callback = function(Y)
 		Boud = Y;
@@ -6574,7 +6404,7 @@ spawn(function()
 	end;
 end);
 CF.CreateToggle({
-	Title = "Auto Turn on Race V3",
+	Title = "bật tộc v3",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6582,7 +6412,7 @@ CF.CreateToggle({
 	end,
 });
 CF.CreateToggle({
-	Title = "Auto Turn on Race V4",
+	Title = "bật tộc v4",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6615,7 +6445,7 @@ spawn(function()
 	end;
 end);
 CF.CreateToggle({
-	Title = "Auto Turn on Spin Position",
+	Title = "cày vòng tròn",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6623,7 +6453,7 @@ CF.CreateToggle({
 	end,
 });
 CF.CreateToggle({
-	Title = "Turn on Bypass Teleport",
+	Title = "bypass dịch chuyển",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6654,7 +6484,7 @@ spawn(function()
 	end;
 end);
 CF.CreateToggle({
-	Title = "Anti AFK",
+	Title = "không AFK",
 	Description = "",
 	Default = true,
 	Callback = function(Y)
@@ -6747,7 +6577,7 @@ vF.CreateSlider({
 	pSats = Y;
 end);
 vF.CreateToggle({
-	Title = "Auto Melee",
+	Title = "tự động cận chiến",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6755,7 +6585,7 @@ vF.CreateToggle({
 	end,
 });
 vF.CreateToggle({
-	Title = "Auto Swords",
+	Title = "tự động kiếm",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6763,7 +6593,7 @@ vF.CreateToggle({
 	end,
 });
 vF.CreateToggle({
-	Title = "Auto Gun",
+	Title = "tự động súng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6771,7 +6601,7 @@ vF.CreateToggle({
 	end,
 });
 vF.CreateToggle({
-	Title = "Auto Blox Fruit",
+	Title = "tự động trái ác quỷ",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6779,7 +6609,7 @@ vF.CreateToggle({
 	end,
 });
 vF.CreateToggle({
-	Title = "Auto Defense",
+	Title = "tự động máu",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6833,7 +6663,7 @@ spawn(function()
 end);
 local mF = yz.CreateSection("Fighting Melee Styles");
 mF.CreateToggle({
-	Title = "Auto Superhuman",
+	Title = "võ Siêu Nhân",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6892,7 +6722,7 @@ spawn(function()
 	end;
 end);
 mF.CreateToggle({
-	Title = "Auto DeathStep",
+	Title = "võ Bước Chân Tử Thần",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6944,7 +6774,7 @@ spawn(function()
 	end;
 end);
 mF.CreateToggle({
-	Title = "Auto Sharkman Karate",
+	Title = "võ Karate Người Cá Mập",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -6996,7 +6826,7 @@ spawn(function()
 	end;
 end);
 mF.CreateToggle({
-	Title = "Auto ElectricClaw",
+	Title = "võ móng vuốt điện",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7029,7 +6859,7 @@ spawn(function()
 	end;
 end);
 mF.CreateToggle({
-	Title = "Auto DragonTalon",
+	Title = "võ vuốt rồng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7060,7 +6890,7 @@ spawn(function()
 	end;
 end);
 mF.CreateToggle({
-	Title = "Auto Godhuman",
+	Title = "võ thần",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7111,7 +6941,7 @@ spawn(function()
 	end;
 end);
 mF.CreateToggle({
-	Title = "Auto SanguineArt",
+	Title = "võ nghệ thuật huyết ảnh",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7198,7 +7028,7 @@ spawn(function()
 	end;
 end);
 yF.CreateToggle({
-	Title = "Auto Elite Quest",
+	Title = "cày e líp",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7233,7 +7063,7 @@ spawn(function()
 	end;
 end);
 yF.CreateToggle({
-	Title = "Stop when got God\'s Chalice",
+	Title = "dừng khi có chén thánh",
 	Description = "",
 	Default = true,
 	Callback = function(Y)
@@ -7252,7 +7082,7 @@ spawn(function()
 	end;
 end);
 yF.CreateToggle({
-	Title = "Auto Tushita Sword",
+	Title = "cày kiếm tushita",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7313,7 +7143,7 @@ spawn(function()
 	end;
 end);
 yF.CreateToggle({
-	Title = "Auto Yama Sword",
+	Title = "cày kiếm yama",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7366,7 +7196,7 @@ spawn(function()
 	end;
 end);
 cF.CreateToggle({
-	Title = "Auto Get CDK [ Last Quest ]",
+	Title = "cày kiếm CDK[ Last Quest ]",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7401,7 +7231,7 @@ spawn(function()
 	end;
 end);
 cF.CreateToggle({
-	Title = "Auto Yama CDK",
+	Title = "cày nhiệm vụ yama CDK",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7582,7 +7412,7 @@ spawn(function()
 	end;
 end);
 cF.CreateToggle({
-	Title = "Auto Tushita CDK",
+	Title = "cày nhiệm vụ Tushita CDK",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7747,7 +7577,7 @@ SF.CreateButton({ Title = "Buy True Triple Katana Sword", Callback = function()
 		Q.Remotes.CommF_:InvokeServer("MysteriousMan", "2");
 	end });
 SF.CreateToggle({
-	Title = "Tween to Legendary Sword Dealer",
+	Title = "đến ông bán kiếm ttk",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7769,7 +7599,7 @@ spawn(function()
 end);
 local oF = bz.CreateSection("Pole / God Enal\'s");
 oF.CreateToggle({
-	Title = "Auto Pole V1",
+	Title = "cày Pole V1",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7794,7 +7624,7 @@ spawn(function()
 	end;
 end);
 oF.CreateToggle({
-	Title = "Auto Pole V2 [Beta]",
+	Title = "cày Pole V2 [Beta]",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7843,7 +7673,7 @@ spawn(function()
 end);
 local ZF = bz.CreateSection("Items Law/Order Sword");
 ZF.CreateToggle({
-	Title = "Auto Law Sword",
+	Title = "cày kiếm Law",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7875,7 +7705,7 @@ ZF.CreateButton({ Title = "Start Law Raids", Callback = function()
 	end });
 local TF = bz.CreateSection("East Blue Misc");
 TF.CreateToggle({
-	Title = "Auto Saw Sword",
+	Title = "cày kiếm Saw",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7900,7 +7730,7 @@ spawn(function()
 	end;
 end);
 TF.CreateToggle({
-	Title = "Auto Saber Sword",
+	Title = "cày kiếm Saber",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -7993,7 +7823,7 @@ spawn(function()
 	end;
 end);
 TF.CreateToggle({
-	Title = "Auto Cybrog",
+	Title = "cày Cybrog",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8018,7 +7848,7 @@ spawn(function()
 	end;
 end);
 TF.CreateToggle({
-	Title = "Auto Usoap\'s Hat",
+	Title = "cày nón Usoap\'s ",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8075,7 +7905,7 @@ spawn(function()
 	end;
 end);
 TF.CreateToggle({
-	Title = "Auto Warden Sword",
+	Title = "cày kiếm Warden",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8100,7 +7930,7 @@ spawn(function()
 	end;
 end);
 TF.CreateToggle({
-	Title = "Auto Marine Coat",
+	Title = "cày mũ Marine",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8125,7 +7955,7 @@ spawn(function()
 	end;
 end);
 TF.CreateToggle({
-	Title = "Auto Swan Coat",
+	Title = "cày mũ Swan",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8151,7 +7981,7 @@ spawn(function()
 end);
 local kF = bz.CreateSection("Rengoku Sword");
 kF.CreateToggle({
-	Title = "Auto Rengoku Sword",
+	Title = "cày kiếm Rengoku",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8176,7 +8006,7 @@ spawn(function()
 	end);
 end);
 kF.CreateToggle({
-	Title = "Auto Key Rengoku",
+	Title = "cày  Key Rengoku",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8207,7 +8037,7 @@ spawn(function()
 	end;
 end);
 kF.CreateToggle({
-	Title = "Auto Dragon Trident",
+	Title = "cày kiếm Dragon Trident",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8232,7 +8062,7 @@ spawn(function()
 	end;
 end);
 kF.CreateToggle({
-	Title = "Auto Long Sword",
+	Title = "cày kiếm Long",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8257,7 +8087,7 @@ spawn(function()
 	end;
 end);
 kF.CreateToggle({
-	Title = "Auto Black Spikey",
+	Title = "cày Black Spikey",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8282,7 +8112,7 @@ spawn(function()
 	end;
 end);
 kF.CreateToggle({
-	Title = "Auto Dark Blade V3",
+	Title = "cày Dark Blade V3",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8314,7 +8144,7 @@ spawn(function()
 	end;
 end);
 kF.CreateToggle({
-	Title = "Auto Midnight Blade",
+	Title = "cày Midnight Blade",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8345,7 +8175,7 @@ spawn(function()
 	end;
 end);
 kF.CreateToggle({
-	Title = "Auto Darkbeard",
+	Title = "cày Darkbeard",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8378,7 +8208,7 @@ spawn(function()
 	end;
 end);
 kF.CreateToggle({
-	Title = "Auto Unlocked DonSwan",
+	Title = " tự động mở DonSwan",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8480,7 +8310,7 @@ spawn(function()
 	end;
 end);
 LF.CreateToggle({
-	Title = "Auto Canvendish Sword",
+	Title = "cày kiếm Canvendish",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -8629,7 +8459,7 @@ spawn(function()
 	end);
 end);
 PF.CreateToggle({
-	Title = "Auto Teleport Frozen Dimension",
+	Title = "dịch chuyển tới Frozen Dimension",
 	Description = "turn on for teleport to frozen dimension and start the leviathan gate",
 	Default = false,
 	Callback = function(Y)
@@ -8649,7 +8479,7 @@ spawn(function()
 	end;
 end);
 PF.CreateToggle({
-	Title = "Auto Drive To Hydra Island",
+	Title = "lái về Hydra Island",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9104,7 +8934,7 @@ spawn(function()
 	end;
 end);
 XF.CreateToggle({
-	Title = "Auto Find Kitsune Island",
+	Title = " tìm đảo Kitsune ",
 	Description = "turn on for finding & tween kitsune island",
 	Default = false,
 	Callback = function(Y)
@@ -9179,7 +9009,7 @@ spawn(function()
 	end;
 end);
 XF.CreateToggle({
-	Title = "Auto Collect Azure Ember",
+	Title = "nhận cục xanh đảo kit",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9201,7 +9031,7 @@ spawn(function()
 	end;
 end);
 XF.CreateToggle({
-	Title = "Auto Trade Azure Ember",
+	Title = "giạo dịch cục xanh",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9270,7 +9100,7 @@ spawn(function()
 	end;
 end);
 BF.CreateToggle({
-	Title = "Auto Find Mirage Island",
+	Title = "tìm đảo Mirage ",
 	Description = "turn on for finding & tween mirage island",
 	Default = false,
 	Callback = function(Y)
@@ -9314,7 +9144,7 @@ spawn(function()
 	end;
 end);
 BF.CreateToggle({
-	Title = "Auto Tween To Highest Point",
+	Title = "chạy đến chỗ cao",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9333,7 +9163,7 @@ spawn(function()
 	end;
 end);
 BF.CreateToggle({
-	Title = "Auto Collect Gear",
+	Title = "nhặt gear",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9354,7 +9184,7 @@ spawn(function()
 	end);
 end);
 BF.CreateToggle({
-	Title = "Change Transparency can see",
+	Title = "nhìn mặt trăng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9379,7 +9209,7 @@ spawn(function()
 	end);
 end);
 BF.CreateToggle({
-	Title = "Auto Tween Advanced Fruit Dealer",
+	Title = "đến chỗ bán trái VIP",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9400,7 +9230,7 @@ spawn(function()
 	end;
 end);
 BF.CreateToggle({
-	Title = "Auto Collect Mirage Chest",
+	Title = "nhặt rương đảo bí ẩn",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9462,7 +9292,7 @@ spawn(function()
 	end;
 end);
 lF.CreateToggle({
-	Title = "Auto Skull Guitar",
+	Title = "cày súng guitar",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9655,7 +9485,7 @@ spawn(function()
 	end;
 end);
 lF.CreateToggle({
-	Title = "Auto Farm Material Skull Guitar",
+	Title = "cày thông thạo Skull Guitar",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9770,7 +9600,7 @@ spawn(function()
 	end);
 end);
 EF.CreateToggle({
-	Title = "Auto Pull Lever",
+	Title = "tự động gạt cần",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9791,7 +9621,7 @@ spawn(function()
 	end;
 end);
 EF.CreateToggle({
-	Title = "Auto Train V4",
+	Title = "tự động train v4",
 	Description = "turn on for farm tier + auto upgrade your tier level",
 	Default = false,
 	Callback = function(Y)
@@ -9848,7 +9678,7 @@ EF.CreateButton({ Title = "Teleport to Ancient Clock", Callback = function()
 		notween(CFrame.new(29549, 15069, -88));
 	end });
 EF.CreateToggle({
-	Title = "Auto Teleport to Race Doors",
+	Title = "chạy đến chỗ tộc bản thân",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9877,7 +9707,7 @@ spawn(function()
 	end;
 end);
 EF.CreateToggle({
-	Title = "Auto Complete Trial Race",
+	Title = "tự động nhiệm vụ v4",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -9985,7 +9815,7 @@ spawn(function()
 	end;
 end);
 EF.CreateToggle({
-	Title = "Auto Kill Player After Trial",
+	Title = "đánh người chơi v4",
 	Description = "turn on for kill player after the race trials",
 	Default = false,
 	Callback = function(Y)
@@ -10014,7 +9844,7 @@ spawn(function()
 end);
 local OF = Sz.CreateSection("Dojo Quest & Drago Race");
 OF.CreateToggle({
-	Title = "Auto Dojo Trainer",
+	Title = "cày đai",
 	Description = "turn on for do dojo belt quest white to black",
 	Default = false,
 	Callback = function(Y)
@@ -10118,7 +9948,7 @@ spawn(function()
 	end;
 end);
 OF.CreateToggle({
-	Title = "Auto Dragon Hunter",
+	Title = "cày cục lửa ember",
 	Description = "turn on for farm blaze ember + auto collect blaze ember",
 	Default = false,
 	Callback = function(Y)
@@ -10277,7 +10107,7 @@ spawn(function()
 	end;
 end);
 fF.CreateToggle({
-	Title = "Auto Drago (V1)",
+	Title = "cày tộc rồng (V1)",
 	Description = "turn on for auto quest1 auto prehistoric event + collect dragon eggs",
 	Default = false,
 	Callback = function(Y)
@@ -10304,7 +10134,7 @@ spawn(function()
 	end;
 end);
 fF.CreateToggle({
-	Title = "Auto Drago (V2)",
+	Title = "cày tộc rồng (V2)",
 	Description = "turn on for auto kill Forest Pirate & Collect fireflower",
 	Default = false,
 	Callback = function(Y)
@@ -10344,7 +10174,7 @@ spawn(function()
 	end;
 end);
 fF.CreateToggle({
-	Title = "Auto Drago (V3)",
+	Title = "cày tộc rồng (V3)",
 	Description = "turn on for sea event kill terror shark",
 	Default = false,
 	Callback = function(Y)
@@ -10369,7 +10199,7 @@ spawn(function()
 	end;
 end);
 fF.CreateToggle({
-	Title = "Auto Relic Drago Trial [Beta]",
+	Title = "đến chỗ up rồng  [Beta]",
 	Description = "turn on for auto trial v4 you have to COLLECT RELIC by your self",
 	Default = false,
 	Callback = function(Y)
@@ -10420,7 +10250,7 @@ spawn(function()
 	end;
 end);
 fF.CreateToggle({
-	Title = "Auto Train Drago v4",
+	Title = "cày tộc rồng v4",
 	Description = "turn on for training Drago race v4 + auto upgrade tier",
 	Default = false,
 	Callback = function(Y)
@@ -10454,7 +10284,7 @@ spawn(function()
 	end;
 end);
 fF.CreateToggle({
-	Title = "Tween to Drago Trials",
+	Title = "tới chỗ up tộc rồng ",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10472,7 +10302,7 @@ spawn(function()
 	end;
 end);
 fF.CreateToggle({
-	Title = "Swap Drago Race",
+	Title = "chuyển đổi tộc rồng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10567,7 +10397,7 @@ spawn(function()
 	end;
 end);
 xF.CreateToggle({
-	Title = "Auto Find Prehistoric Island",
+	Title = "tìm đảo tiền sử",
 	Description = "turn on for finding & tween & start prehistoric island",
 	Default = false,
 	Callback = function(Y)
@@ -10625,7 +10455,7 @@ spawn(function()
 	end;
 end);
 xF.CreateToggle({
-	Title = "Auto Patch Prehistoric Event",
+	Title = "cày sự kiện tiền sử",
 	Description = "turn on for auto patch volcano + kill aura lava golems + auto remove lava",
 	Default = false,
 	Callback = function(Y)
@@ -10707,7 +10537,7 @@ spawn(function()
 	end;
 end);
 xF.CreateToggle({
-	Title = "Auto Collect Dino Bones",
+	Title = "nhặt xương rồng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10730,7 +10560,7 @@ spawn(function()
 	end;
 end);
 xF.CreateToggle({
-	Title = "Auto Collect Dragon Eggs",
+	Title = "nhặt trứng rồng",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10750,7 +10580,7 @@ spawn(function()
 	end;
 end);
 xF.CreateToggle({
-	Title = "Auto Reset When Complete Volcano",
+	Title = "đặt lại khi hoàn thành",
 	Description = "Reset When Complete Volcano not collect dino bones and else..",
 	Default = false,
 	Callback = function(Y)
@@ -10805,7 +10635,7 @@ j = {
 		"Dough",
 	};
 dq.CreateDropdown({
-	Title = "Select Chip",
+	Title = "chọn chip",
 	Description = "",
 	Values = j,
 	Default = "Flame",
@@ -10815,7 +10645,7 @@ dq.CreateDropdown({
 	end,
 });
 dq.CreateToggle({
-	Title = "Auto Select Dungeon Chip",
+	Title = "chọn chip đột kích",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10884,7 +10714,7 @@ dq.CreateButton({ Title = "Buy Dungeon Chips [Devil Fruit]", Callback = function
 	end });
 local Qq = Zz.CreateSection("Raiding Menu");
 Qq.CreateToggle({
-	Title = "Auto Start Raid",
+	Title = "bắt đầu đột kích",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10911,7 +10741,7 @@ spawn(function()
 	end;
 end);
 Qq.CreateToggle({
-	Title = "Teleport To Lab",
+	Title = "qua đảo tiếp theo",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10931,7 +10761,7 @@ Qq.CreateToggle({
 	end,
 });
 Qq.CreateToggle({
-	Title = "Auto Complete Raid [Safety]",
+	Title = "tự động hoàn thành đột kích",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -10977,7 +10807,7 @@ spawn(function()
 	end);
 end);
 Qq.CreateToggle({
-	Title = "Kill Aura",
+	Title = "kill aura",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -11004,7 +10834,7 @@ spawn(function()
 	end;
 end);
 Qq.CreateToggle({
-	Title = "Auto Next Island",
+	Title = "qua đảo",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -11031,7 +10861,7 @@ spawn(function()
 	end;
 end);
 Qq.CreateToggle({
-	Title = "Auto Awakening",
+	Title = "tự động nâng cấp",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -11097,7 +10927,7 @@ for Y, d in pairs((game:GetService("Players")):GetChildren()) do
 	table.insert(wq, d.Name);
 end;
 rq.CreateDropdown({
-	Title = "Choose Players",
+	Title = "chọn người chơi",
 	Description = "",
 	Values = wq,
 	Default = false,
@@ -11107,7 +10937,7 @@ rq.CreateDropdown({
 	end,
 });
 rq.CreateToggle({
-	Title = "Teleport to choose players",
+	Title = "đi đến người chơi chọn",
 	Description = "",
 	Default = false,
 	Callback = function(Y)
@@ -12716,7 +12546,7 @@ task.spawn(function()
 	end;
 end);
 oq.CreateToggle({
-	Title = "Turn on Walk on Water",
+	Title = "đi bộ trên nước",
 	Description = "walk on water",
 	Default = true,
 	Callback = function(Y)
@@ -12730,7 +12560,7 @@ oq.CreateToggle({
 	end,
 });
 oq.CreateToggle({
-	Title = "Turn on Ice Walk",
+	Title = "quên rồi",
 	Description = "Ice walk just like walk on water but have ice effect",
 	Default = false,
 	Callback = function(Y)
@@ -12925,4 +12755,3 @@ task.spawn(function()
 	end);
 end);
 loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/Nguyenkhang-hub/refs/heads/main/Fast%20attack"))()
-
