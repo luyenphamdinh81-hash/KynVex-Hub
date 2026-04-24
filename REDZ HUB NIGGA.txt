@@ -3730,19 +3730,19 @@ end
 local vu32 = loadstring(game:HttpGet("https://pastefy.app/5bk02Q6b/raw"))();
 local v466 = vu32:MakeWindow({
     Title = "KynVex Hub [V7]",
-    SubTitle = "By Real_NightSlayer☑️",
+    SubTitle = "By NguyenKhang",
     SaveFolder = "NightSlayerOnTop | redz lib v5.lua"
 })
 
 v466:AddMinimizeButton({
-    Button = { Image = "rbxassetid://79169432288417", BackgroundTransparency = 1},
+    Button = { Image = "rbxassetid://91633383470522", BackgroundTransparency = 1},
     Size = UDim2.new(0, 40, 0, 40),
     Corner = { CornerRadius = UDim.new(0.5, 0) },
 })
 
 local v484 = v466:MakeTab({"Information", "info"})
 local v485 = v466:MakeTab({"Farm", "home"})
-local v486 = v466:MakeTab({"Fishing", "rbxassetid://79169432288417"})
+local v486 = v466:MakeTab({"Fishing", "rbxassetid://91633383470522"})
 local v487 = v466:MakeTab({"Quest/Items", "swords"})
 local v491 = v466:MakeTab({"Raid/Fruits", "cherry"})
 local v489 = v466:MakeTab({"Sea Event", "waves"})
@@ -3756,7 +3756,7 @@ local v496 = v466:MakeTab({"Misc", "settings"})
 v484:AddDiscordInvite({
     Name = "KynVex Hub",
     Description = "Vào Để Nhận Thông Báo Sớm Nhất Nhé",
-    Logo = "rbxassetid://79169432288417",
+    Logo = "rbxassetid://91633383470522",
     Invite = "https://discord.gg/wWHxH6ARU"
 })
 v484:AddParagraph({
@@ -6600,7 +6600,7 @@ if World3 then
                                             game.StarterGui:SetCore("SendNotification", {
                                                 Title = "Tu   n Anh IOS",
                                                 Text = "Use! - Yama or Tushita",
-                                                con = "rbxassetid://79169432288417",
+                                                con = "rbxassetid://91633383470522",
                                                 Duration = 10
                                             })
                                             v798 = true
