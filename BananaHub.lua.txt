@@ -2660,7 +2660,7 @@ local function ShootLoop()
                         explosion.CanCollide = false
                         explosion.Parent = workspace
                         
-                        local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+                        local tweenInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
                         local tween = game:GetService("TweenService"):Create(
                             explosion,
                             tweenInfo,
@@ -2694,7 +2694,7 @@ end
 Library = loadstring(game:HttpGet("https://pastefy.app/vgSGtrbP/raw"))()
 
 Window = Library:CreateWindow({
-    Title = " KynVex Hub",
+    Title = " BANANA CAT Hub",
     Subtitle = "- Blox Fruit",
     Image = "rbxassetid://130947856929902"
 })
