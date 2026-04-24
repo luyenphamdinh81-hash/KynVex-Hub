@@ -1,39 +1,21 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/refs/heads/main/attack-module.lua"))()
-local Y = game.Players;
-local d = Y.LocalPlayer;
-local R = d.Character.HumanoidRootPart;
-local Q = game:GetService("ReplicatedStorage");
-local r = d.Data.Level.Value;
-local a = game:GetService("TeleportService");
-local w = game:GetService("TweenService");
-local F = game:GetService("Lighting");
-local M = workspace.Enemies;
-local K = game:GetService("VirtualInputManager");
-local n = game:GetService("VirtualUser");
-local I = d.Team;
-local W = game:GetService("RunService");
-local N = game:GetService("Stats");
-local D = d.Character.Energy.Value;
-local A = game:GetService("Players");
-local u = A.LocalPlayer:WaitForChild("PlayerGui");
-local g = A.LocalPlayer;
-local z = g:WaitForChild("Backpack");
-local i = g.Character or g.CharacterAdded:Wait();
-local U = {};
-local C = {};
-local v = {};
-local m = {};
-local y = false;
-local b = false;
-local c = true;
-local H = false;
-local S = false;
-local o = false;
-local Z = false;
-local T = .1;
-local L = 0;
-local P = 25;
-repeat
+-- Fluent UI Only
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Maru K [ BloxFruits ]",
+    SubTitle = "Premium",
+    TabWidth = 140,
+    Size = UDim2.fromOffset(480, 300),
+    Acrylic = true,
+    Theme = "Aqua",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+Fluent:Notify({
+    Title = "Maru K",
+    Content = "Premium Aqua UI Loaded",
+    Duration = 3
+})
 	local Y = (d.PlayerGui:WaitForChild("Main")):WaitForChild("Loading") and game:IsLoaded();
 	wait();
 until Y;
@@ -4199,16 +4181,16 @@ function Kz.CreateMain(Y)
 	return V;
 end;
 local Cz = Kz.CreateMain({ Desc = "" });
-local vz = Cz.T({ Page_Name = "Farm", Page_Title = "Farm" });
-local mz = Cz.T({ Page_Name = "Config", Page_Title = "Config" });
+local vz = Cz.T({ Page_Name = "Main", Page_Title = "Farm" });
+local mz = Cz.T({ Page_Name = "Setting", Page_Title = "Config" });
 local yz = Cz.T({ Page_Name = "Fighting Style", Page_Title = "Fighting Style" });
-local bz = Cz.T({ Page_Name = "Items Farm", Page_Title = "Items Farm" });
+local bz = Cz.T({ Page_Name = "Items", Page_Title = "Items Farm" });
 local cz = Cz.T({ Page_Name = "Sea Events", Page_Title = "Sea Events" });
 local Hz = Cz.T({ Page_Name = "Mirage + RaceV4", Page_Title = "Mirage + RaceV4" });
-local Sz = Cz.T({ Page_Name = "Drago Dojo", Page_Title = "Drago Dojo" });
-local oz = Cz.T({ Page_Name = "Prehistoric", Page_Title = "Prehistoric" });
+local Sz = Cz.T({ Page_Name = "Dragon Events", Page_Title = "Drago Dojo" });
+local oz = Cz.T({ Page_Name = "Prehistoric island", Page_Title = "Prehistoric" });
 local Zz = Cz.T({ Page_Name = "Raid", Page_Title = "Raid" });
-local Tz = Cz.T({ Page_Name = "Combat PVP", Page_Title = "Combat PVP" });
+local Tz = Cz.T({ Page_Name = "PVP", Page_Title = "Combat PVP" });
 local kz = Cz.T({ Page_Name = "Teleport", Page_Title = "Teleport" });
 local Lz = Cz.T({ Page_Name = "Fruits", Page_Title = "Fruits" });
 local Pz = Cz.T({ Page_Name = "Shop", Page_Title = "Shop" });
