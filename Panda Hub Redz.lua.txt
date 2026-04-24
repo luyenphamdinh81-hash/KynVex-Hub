@@ -1,12 +1,21 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/nvb201112/fix-lag/refs/heads/main/fix%20lag%20new.luau"))()
--- This file was deobfuscated using Scene Deobfuscator discord.gg/deobfuscate :D
+-- Fluent UI Only
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
-hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Death), function()
-    -- empty block
-end)
-hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Respawn), function()
-    -- empty block
-end)
+local Window = Fluent:CreateWindow({
+    Title = "Maru K [ BloxFruits ]",
+    SubTitle = "Premium",
+    TabWidth = 140,
+    Size = UDim2.fromOffset(480, 300),
+    Acrylic = true,
+    Theme = "Aqua",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+Fluent:Notify({
+    Title = "Maru K",
+    Content = "Premium Aqua UI Loaded",
+    Duration = 3
+})
 if game.PlaceId == 85211729168715 then
     World1 = true
 elseif game.PlaceId == 79091703265657 then
