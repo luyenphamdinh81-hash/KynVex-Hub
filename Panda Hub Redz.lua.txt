@@ -23,7 +23,6 @@ elseif game.PlaceId == 79091703265657 then
 elseif game.PlaceId == 100117331123089 then
     World3 = true
 end
-    MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
     if World1 then
         if MyLevel >= 1 and MyLevel <= 9 or SelectMonster == "Bandit" then
             Mon = "Bandit"
@@ -3671,16 +3670,16 @@ l_ImageButton_0.MouseButton1Click:Connect(function()
     end
 end)
 local v484 = v466:MakeTab({"Th\195\180ng Tin | Info","rbxassetid://765714378292"})
-local v485 = v466:MakeTab({"Farming","rbxassetid://765714378292"})
-local v486 = v466:MakeTab({"Auto Fishing","rbxassetid://765714378292"})
-local v487 = v466:MakeTab({"Quest | Items","rbxassetid://765714378292"})
-local v488 = v466:MakeTab({"Volcano Dojo","rbxassetid://765714378292"})
-local v489 = v466:MakeTab({"Sea Event","rbxassetid://765714378292"})
+local v485 = v466:MakeTab({"Main","rbxassetid://765714378292"})
+local v486 = v466:MakeTab({"Fish","rbxassetid://765714378292"})
+local v487 = v466:MakeTab({"Items","rbxassetid://765714378292"})
+local v488 = v466:MakeTab({"Prehistoric island","rbxassetid://765714378292"})
+local v489 = v466:MakeTab({"Sea Events","rbxassetid://765714378292"})
 local v490 = v466:MakeTab({"Race V4","rbxassetid://765714378292"})
-local v491 = v466:MakeTab({"Raid Fruits","rbxassetid://765714378292"})
-local v492 = v466:MakeTab({"Fruits | Check Stock","rbxassetid://765714378292"})
+local v491 = v466:MakeTab({"Raid","rbxassetid://765714378292"})
+local v492 = v466:MakeTab({"Fruits","rbxassetid://765714378292"})
 local v493 = v466:MakeTab({"Teleport","rbxassetid://765714378292"})
-local v494 = v466:MakeTab({"PvP,Player","rbxassetid://765714378292"})
+local v494 = v466:MakeTab({"PvP","rbxassetid://765714378292"})
 local v495 = v466:MakeTab({"Shop","rbxassetid://765714378292"})
 local v496 = v466:MakeTab({"Settings","rbxassetid://765714378292"})
 v484:AddDiscordInvite({
