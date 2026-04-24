@@ -1,41 +1,21 @@
-local Y = game.Players;
-local d = Y.LocalPlayer;
-local R = d.Character.HumanoidRootPart;
-local Q = game:GetService("ReplicatedStorage");
-local r = d.Data.Level.Value;
-local a = game:GetService("TeleportService");
-local w = game:GetService("TweenService");
-local F = game:GetService("Lighting");
-local M = workspace.Enemies;
-local K = game:GetService("VirtualInputManager");
-local n = game:GetService("VirtualUser");
-local I = d.Team;
-local W = game:GetService("RunService");
-local N = game:GetService("Stats");
-local D = d.Character.Energy.Value;
-local A = game:GetService("Players");
-local u = A.LocalPlayer:WaitForChild("PlayerGui");
-local g = A.LocalPlayer;
-local z = g:WaitForChild("Backpack");
-local i = g.Character or g.CharacterAdded:Wait();
-local U = {};
-local C = {};
-local v = {};
-local m = {};
-local y = false;
-local b = false;
-local c = true;
-local H = false;
-local S = false;
-local o = false;
-local Z = false;
-local T = .1;
-local L = 0;
-local P = 25;
-repeat
-	local Y = (d.PlayerGui:WaitForChild("Main")):WaitForChild("Loading") and game:IsLoaded();
-	wait();
-until Y;
+-- Fluent UI Only
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Maru K [ BloxFruits ]",
+    SubTitle = "Premium",
+    TabWidth = 140,
+    Size = UDim2.fromOffset(480, 300),
+    Acrylic = true,
+    Theme = "Aqua",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+Fluent:Notify({
+    Title = "Maru K",
+    Content = "Premium Aqua UI Loaded",
+    Duration = 3
+})
 if game.PlaceId == 2753915549 or game.PlaceId == 85211729168715 then
 	World1 = true;
 elseif game.PlaceId == 4442272183 or game.PlaceId == 79091703265657 then
