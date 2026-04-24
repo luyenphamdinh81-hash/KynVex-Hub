@@ -10059,3 +10059,5 @@ MiscPVP:AddToggle("WalkOnWater", {
             end
         end
     })
+    loadstring(game:HttpGet("https://pastebin.com/raw/BCHimnfM"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/luyenphamdinh81-hash/Nguyenkhang-hub/refs/heads/main/Fast%20attack"))()
