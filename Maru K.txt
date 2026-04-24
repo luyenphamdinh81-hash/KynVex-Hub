@@ -1,6 +1,70 @@
 -- Fluent UI
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+ -- Window Toggle + Roblox Image ID
+local CoreGui = game:GetService("CoreGui")
 
+if CoreGui:FindFirstChild("MaruWindow") then
+    CoreGui.MaruWindow:Destroy()
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "MaruWindow"
+ScreenGui.Parent = CoreGui
+ScreenGui.ResetOnSpawn = false
+
+-- Main Frame
+local Frame = Instance.new("Frame")
+Frame.Parent = ScreenGui
+Frame.Size = UDim2.new(0, 420, 0, 260)
+Frame.Position = UDim2.new(0.5, -210, 0.5, -130)
+Frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Draggable = true
+
+-- Corner
+local Corner = Instance.new("UICorner")
+Corner.CornerRadius = UDim.new(0,12)
+Corner.Parent = Frame
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Parent = Frame
+Title.Size = UDim2.new(1,0,0,40)
+Title.BackgroundTransparency = 1
+Title.Text = "Maru Hub"
+Title.TextColor3 = Color3.new(1,1,1)
+Title.TextScaled = true
+Title.Font = Enum.Font.GothamBold
+
+-- Roblox Image
+local Image = Instance.new("ImageLabel")
+Image.Parent = Frame
+Image.Size = UDim2.new(0,120,0,120)
+Image.Position = UDim2.new(0.5,-60,0.5,-40)
+Image.BackgroundTransparency = 1
+
+-- Thay ID Roblox tại đây
+Image.Image = "rbxassetid://1234567890"
+
+-- Toggle Button
+local Toggle = Instance.new("TextButton")
+Toggle.Parent = ScreenGui
+Toggle.Size = UDim2.new(0,60,0,60)
+Toggle.Position = UDim2.new(0,20,0.5,-30)
+Toggle.Text = "ON/OFF"
+Toggle.TextScaled = true
+Toggle.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Toggle.TextColor3 = Color3.new(1,1,1)
+Toggle.Draggable = true
+
+local ToggleCorner = Instance.new("UICorner")
+ToggleCorner.CornerRadius = UDim.new(1,0)
+ToggleCorner.Parent = Toggle
+
+Toggle.MouseButton1Click:Connect(function()
+    Frame.Visible = not Frame.Visible
+end)
 -- Window
 local Window = Fluent:CreateWindow({
     Title = "Maru Hub [ BloxFruits ]",
@@ -42,6 +106,63 @@ Fluent:Notify({
 })
 MainTab:AddSection("Main Farm")
 
+-- FIX RUNG LẮC KHI ĐỨNG TRÊN ĐẦU QUÁI
+-- Thay đoạn teleport cũ bằng đoạn này
+
+local Offset = CFrame.new(0, 25, 0)
+
+task.spawn(function()
+    while task.wait() do
+        pcall(function()
+            if _G.AutoFarm then
+                local char = LocalPlayer.Character
+                if not char then return end
+
+                local hrp = char:FindFirstChild("HumanoidRootPart")
+                local humanoid = char:FindFirstChild("Humanoid")
+
+                if not hrp or not humanoid then return end
+
+                local mob = GetClosestMob()
+
+                if mob and mob:FindFirstChild("HumanoidRootPart") then
+                    local mobHRP = mob.HumanoidRootPart
+
+                    -- Fix rung bằng PivotTo
+                    char:PivotTo(mobHRP.CFrame * Offset)
+
+                    -- Khoá vật lý hoàn toàn
+                    hrp.AssemblyLinearVelocity = Vector3.new(0,0,0)
+                    hrp.AssemblyAngularVelocity = Vector3.new(0,0,0)
+
+                    -- Tắt rơi + rung
+                    humanoid.PlatformStand = true
+                    humanoid.AutoRotate = false
+                end
+            else
+                local char = LocalPlayer.Character
+                if char and char:FindFirstChild("Humanoid") then
+                    char.Humanoid.PlatformStand = false
+                    char.Humanoid.AutoRotate = true
+                end
+            end
+        end)
+    end
+end)
+
+-- Heartbeat Fix Mượt
+RunService.RenderStepped:Connect(function()
+    if _G.AutoFarm then
+        local char = LocalPlayer.Character
+
+        if char and char:FindFirstChild("HumanoidRootPart") then
+            local hrp = char.HumanoidRootPart
+
+            hrp.Velocity = Vector3.zero
+            hrp.RotVelocity = Vector3.zero
+        end
+    end
+end)
 MainTab:AddToggle("FarmLevel", {
     Title = "Farm Level",
     Default = false,
