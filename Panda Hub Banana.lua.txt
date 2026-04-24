@@ -16,31 +16,6 @@ Fluent:Notify({
     Content = "Premium Aqua UI Loaded",
     Duration = 3
 })
-	local Y = (d.PlayerGui:WaitForChild("Main")):WaitForChild("Loading") and game:IsLoaded();
-	wait();
-until Y;
-if game.PlaceId == 2753915549 or game.PlaceId == 85211729168715 then
-	World1 = true;
-elseif game.PlaceId == 4442272183 or game.PlaceId == 79091703265657 then
-	World2 = true;
-elseif game.PlaceId == 7449423635 or game.PlaceId == 100117331123089 then
-	World3 = true;
-end;
-local Cz = Kz.CreateMain({ Desc = "" });
-local vz = Cz.T({ Page_Name = "Main", Page_Title = "Farm" });
-local mz = Cz.T({ Page_Name = "Setting", Page_Title = "Config" });
-local yz = Cz.T({ Page_Name = "Fighting Style", Page_Title = "Fighting Style" });
-local bz = Cz.T({ Page_Name = "Items", Page_Title = "Items Farm" });
-local cz = Cz.T({ Page_Name = "Sea Events", Page_Title = "Sea Events" });
-local Hz = Cz.T({ Page_Name = "Mirage + RaceV4", Page_Title = "Mirage + RaceV4" });
-local Sz = Cz.T({ Page_Name = "Dragon Events", Page_Title = "Drago Dojo" });
-local oz = Cz.T({ Page_Name = "Prehistoric island", Page_Title = "Prehistoric" });
-local Zz = Cz.T({ Page_Name = "Raid", Page_Title = "Raid" });
-local Tz = Cz.T({ Page_Name = "PVP", Page_Title = "Combat PVP" });
-local kz = Cz.T({ Page_Name = "Teleport", Page_Title = "Teleport" });
-local Lz = Cz.T({ Page_Name = "Fruits", Page_Title = "Fruits" });
-local Pz = Cz.T({ Page_Name = "Shop", Page_Title = "Shop" });
-local jz = Cz.T({ Page_Name = "Misc", Page_Title = "Misc" });
 local Gz = vz.CreateSection("Farm");
 Gz.CreateToggle({
 	Title = "Auto Farm Level",
