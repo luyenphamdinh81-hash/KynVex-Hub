@@ -3729,8 +3729,8 @@ function CheckItemBPCRBPCR(v463)
 end
 local vu32 = loadstring(game:HttpGet("https://pastefy.app/5bk02Q6b/raw"))();
 local v466 = vu32:MakeWindow({
-    Title = "KynVex Hub [V7]",
-    SubTitle = "By NguyenKhang",
+    Title = "KynVex [ Bloxfruits ]",
+    SubTitle = "By Real_NightSlayer☑️",
     SaveFolder = "NightSlayerOnTop | redz lib v5.lua"
 })
 
@@ -3743,8 +3743,8 @@ v466:AddMinimizeButton({
 local v484 = v466:MakeTab({"Information", "info"})
 local v485 = v466:MakeTab({"Farm", "home"})
 local v486 = v466:MakeTab({"Fishing", "rbxassetid://91633383470522"})
-local v487 = v466:MakeTab({"Quest/Items", "swords"})
-local v491 = v466:MakeTab({"Raid/Fruits", "cherry"})
+local v487 = v466:MakeTab({"Quest | Items", "swords"})
+local v491 = v466:MakeTab({"Raid | Fruits", "cherry"})
 local v489 = v466:MakeTab({"Sea Event", "waves"})
 local v497 = v466:MakeTab({"Stats", "Signal"})
 local v493 = v466:MakeTab({"Teleport", "locate"})
@@ -3754,7 +3754,7 @@ local v495 = v466:MakeTab({"Shop", "shoppingCart"})
 local v496 = v466:MakeTab({"Misc", "settings"})
 
 v484:AddDiscordInvite({
-    Name = "KynVex Hub",
+    Name = "Night Slayer | Official Sever",
     Description = "Vào Để Nhận Thông Báo Sớm Nhất Nhé",
     Logo = "rbxassetid://91633383470522",
     Invite = "https://discord.gg/wWHxH6ARU"
