@@ -5393,7 +5393,7 @@ end)
 
 DarkbeardBoss = Stack:AddLeftGroupbox("Boss Darkbeard")
 DarkbeardBoss:AddToggle("DarkBreadNormal", {
-    Title = "Auto Darkbread",
+    Title = "Auto DarkBeard",
     Default = false,
     Callback = function(Value)
         _G.Auto_Def_DarkCoat = Value
@@ -5421,7 +5421,7 @@ spawn(function()
 end)
 
 DarkbeardBoss:AddToggle("DarkBreadHop", {
-    Title = "Auto Darkbread [ Hop Server ]",
+    Title = "Auto Darkbeard [ Hop Server ]",
     Default = false,
     Callback = function(Value)
         _G.DarkbreadHop = Value
